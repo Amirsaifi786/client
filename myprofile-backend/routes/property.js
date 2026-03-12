@@ -4,7 +4,25 @@ const multer = require("multer");
 const db = require("../db");
 const nodemailer = require("nodemailer");
 const sendMail = require("../utils/sendMail");
+router.get("/menu", (req, res) => {
 
+  const sql = `
+    SELECT propertyType, rooms, title, slug 
+    FROM properties
+    WHERE status = 1
+  `;
+
+  db.query(sql, (err, result) => {
+
+    if (err) {
+      return res.status(500).json(err);
+    }
+
+    res.json(result);
+
+  });
+
+});
 router.post("/send-message", async (req, res) => {
   const { property_id, message } = req.body;
 
