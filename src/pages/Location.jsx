@@ -18,7 +18,7 @@ function Locations() {
     }, []);
 
     const fetchLocations = async () => {
-        const res = await API.get("property/locations");
+        const res = await API.get("location/locations");
         setLocations(res.data);
     };
 
@@ -71,11 +71,11 @@ function Locations() {
 
         if (editId) {
 
-            await API.put(`property/update-location/${editId}`, formData);
+            await API.put(`location/update-location/${editId}`, formData);
 
         } else {
 
-            await API.post("property/add-location", formData);
+            await API.post("location/add-location", formData);
 
         }
 
@@ -88,7 +88,7 @@ function Locations() {
 
         if (window.confirm("Delete location?")) {
 
-            await API.delete(`property/delete-location/${id}`);
+            await API.delete(`location/delete-location/${id}`);
             fetchLocations();
 
         }

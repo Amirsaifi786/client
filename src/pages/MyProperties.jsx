@@ -26,7 +26,7 @@ function MyResponses() {
 
   const fetchProperties = async (userId, pageNumber = 1) => {
     try {
-      const res = await API.post("/property/user", {
+      const res = await API.post("/property-user/user", {
         user_id: userId,
         page: pageNumber,
         limit: 5,
@@ -50,7 +50,7 @@ function MyResponses() {
   const toggleStatus = async (propertyId, currentStatus) => {
     try {
       const newStatus = currentStatus === 1 ? 0 : 1;
-      await API.patch(`/property/${propertyId}/status`, {
+      await API.patch(`/property-user/${propertyId}/status`, {
         status: newStatus,
       });
 
