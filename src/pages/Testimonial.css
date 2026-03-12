@@ -1,0 +1,36 @@
+.testimonial-section {
+  background: #f8f9fa;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: #6c757d;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;   
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: 72px; /* keeps equal height */
+}
+
+.testimonial-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.testimonial-img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* swiper dots */
+.swiper-pagination-bullet {
+  background: #ff7a00;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}

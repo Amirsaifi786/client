@@ -1,0 +1,54 @@
+.contact-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  position: sticky;
+  top: 100px;
+}
+
+.contact-header {
+  background: #f5f5f5;
+  padding: 12px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.contact-body {
+  padding: 20px;
+}
+
+.owner-avatar {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #999;
+}
+
+.btn-call {
+  border: 1px solid #ff6b2c;
+  color: #ff6b2c;
+  font-weight: 600;
+  background: white;
+}
+
+.btn-call:hover {
+  background: #ff6b2c;
+  color: white;
+}
+
+.btn-send {
+  background: #ff6b2c;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-send:hover {
+  background: #e85c1f;
+}

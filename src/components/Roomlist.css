@@ -1,0 +1,129 @@
+.listtitle
+{
+    color:#f1592a;
+    text-decoration: none;
+}
+.butnbnumber {
+    border: 1px solid #f1592a;
+    color: #f1592a;
+    float : right;
+}
+.butnbnumber1 {
+    border: 1px solid #f1592a;
+    color: #f1592a;
+    float : right;
+}
+.listtitle1
+{
+    color:#000000;
+    text-decoration: none;
+   font-weight: 300;
+}
+/* .listtitleH4
+{
+    ;
+} */
+.butnbnumber:hover
+{
+      /* border: 1px solid #f1592a; */
+    color: #ffffff;
+    background-color: #f1592a;
+
+}
+/* Pagination Styles */
+.pagination-custom {
+    margin-bottom: 2rem;
+}
+
+.page-item-btn {
+    border: none;
+    background-color: #f1f1f1;
+    color: #555;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.page-item-btn:hover {
+    background-color: #e2e2e2;
+}
+
+.page-item-btn.active {
+    background-color: #f25c2d !important; /* Orange from your image */
+    color: white !important;
+}
+
+.page-item-btn.arrow {
+    font-size: 1.2rem;
+    color: #007bff; /* Blue arrow style often seen in these designs */
+}
+
+.page-next-text-btn {
+    border: none;
+    background-color: #f1f1f1;
+    color: #007bff;
+    padding: 0 15px;
+    height: 38px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+.page-next-text-btn:hover {
+    background-color: #e2e2e2;
+}
+
+/* Helper Class for Buttons */
+.btn-orange-light {
+    background-color: #fdf0ec;
+    color: #f25c2d;
+    border: 1px solid #f25c2d;
+}
+
+.btn-orange-light:hover {
+    background-color: #f25c2d;
+    color: white;
+}
+
+.text-orange {
+    color: #f25c2d !important;
+}
+
+.hover-text-orange:hover {
+    color: #f25c2d !important;
+}
+.page-item-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #dee2e6;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.page-item-btn.active {
+    background-color: #fd7e14; /* Orange color from your screenshot */
+    color: white;
+    border-color: #fd7e14;
+}
+
+.page-item-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-next-text-btn {
+    border: none;
+    background: none;
+    font-weight: 600;
+    color: #333;
+}

@@ -1,0 +1,39 @@
+.privacy-policy-page {
+  background-color: #f8f9fa;
+  min-height: 80vh;
+  padding-bottom: 50px;
+}
+
+.policy-card {
+  background-color: #ffffff;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border-radius: 12px;
+}
+
+.policy-card h1 {
+  color: #333333;
+  font-size: 2rem;
+}
+
+.policy-card h2 {
+  color: #ff6b00;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.policy-card p {
+  color: #555555;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.policy-card a {
+  color: #ff6b00;
+  text-decoration: underline;
+}
+
+.text-orange {
+  color: #ff6b00;
+}

@@ -1,0 +1,76 @@
+/* MAP */
+
+.contact-map{
+position:relative;
+}
+
+.contact-map iframe{
+width:100%;
+height:420px;
+border:0;
+}
+
+/* OFFICE BOX */
+
+.office-box{
+position:absolute;
+bottom:30px;
+left:40px;
+background:#fff;
+padding:25px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+max-width:260px;
+}
+
+.office-box h5{
+margin-bottom:10px;
+}
+
+.office-box i{
+color:#f1592a;
+margin-right:8px;
+}
+
+/* CONTACT SECTION */
+
+.contact-section{
+padding:70px 0;
+}
+
+/* CONTACT INFO */
+
+.contact-info .info-item{
+margin-top:15px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.contact-info i{
+color:#f1592a;
+font-size:18px;
+}
+
+/* FORM */
+
+.contact-form{
+background:#fff;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* BUTTON */
+
+.btn-contact{
+background:#f1592a;
+color:white;
+padding:10px 25px;
+border:none;
+}
+
+.btn-contact:hover{
+background:#d84a1f;
+color:white;
+}
