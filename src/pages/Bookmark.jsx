@@ -13,7 +13,7 @@ function MyBookmark() {
   // GET BOOKMARKS
   const fetchBookmarks = async () => {
     try {
-      const res = await API.get("/property/bookmarked-properties");
+      const res = await API.get("/bookmark/bookmarked-properties");
       setBookmarks(res.data);
     } catch (err) {
       console.log(err);
@@ -23,7 +23,7 @@ function MyBookmark() {
   // REMOVE BOOKMARK
   const removeBookmark = async (id) => {
     try {
-      await API.patch(`/property/remove-bookmark/${id}`);
+      await API.patch(`/bookmark/remove-bookmark/${id}`);
 
       // UI instantly update
       setBookmarks(prev => prev.filter(item => item.id !== id));

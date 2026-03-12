@@ -34,7 +34,7 @@ function Home() {
   // Locations
   const fetchLocations = async () => {
     try {
-      const res = await API.get("/property/locations");
+      const res = await API.get("/location/locations");
       setLocations(res.data);
     } catch (error) {
       console.log("Location error:", error);

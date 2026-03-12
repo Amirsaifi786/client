@@ -16,7 +16,7 @@ const PropertyDetail = () => {
 
         try {
 
-            await API.post("/property/send-message", {
+            await API.post("/message/send-message", {
                 property_id: property.id,
                 message: message
             });
@@ -34,7 +34,7 @@ const PropertyDetail = () => {
 
         try {
 
-            await API.post(`/property/update-bookmark/${property.id}`);
+            await API.post(`/bookmark/update-bookmark/${property.id}`);
             setProperty(prev => ({
                 ...prev,
                 bookmark: prev.bookmark === 1 ? 0 : 1
