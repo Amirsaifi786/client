@@ -39,7 +39,7 @@ function MyBookmark() {
       {/* PAGE TITLE */}
       <div style={{ background: "#6c6c6c", padding: "45px 0", color: "#fff" }}>
         <div className="container">
-          <h2 className="fw-bold">Bookmarkdded Listings</h2>
+          <h2 className="fw-bold">Bookmark Listings</h2>
         </div>
       </div>
 
