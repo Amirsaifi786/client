@@ -162,7 +162,7 @@ useEffect(() => {
 
                       <div className="col-md-7 p-4">
                         <h5>
-                          <Link to={`/property/${item.slug}`}>
+                          <Link to={`/propertydetail/${item.slug}`}>
                             {item.title}
                           </Link>
                         </h5>

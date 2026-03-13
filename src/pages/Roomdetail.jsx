@@ -46,45 +46,22 @@ const PropertyDetail = () => {
 
     };
     useEffect(() => {
+  const fetchProperty = async () => {
+    try {
+      const res = await API.get(`/property/slug/${slug}`); // ✅ Corrected
 
-        const fetchProperty = async () => {
+      setProperty(res.data);
 
-            try {
+      let parsedImages = parseJSON(res.data.images);
+      setImages(parsedImages);
 
-                const res = await API.get(`/property/slug/${slug}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-                setProperty(res.data);
-
-                let parsedImages = [];
-
-                if (res.data.images) {
-
-                    if (Array.isArray(res.data.images)) {
-                        parsedImages = res.data.images;
-                    }
-                    else if (typeof res.data.images === "string") {
-
-                        try {
-                            parsedImages = JSON.parse(res.data.images);
-                        } catch {
-                            parsedImages = res.data.images.split(",");
-                        }
-
-                    }
-
-                }
-
-                setImages(parsedImages);
-
-            } catch (error) {
-                console.error(error);
-            }
-
-        };
-
-        fetchProperty();
-
-    }, [slug]);
+  fetchProperty();
+}, [slug]);
     const nextImage = () => {
         setActiveIndex((prev) => (prev + 1) % images.length);
     };
