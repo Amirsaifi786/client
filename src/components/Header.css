@@ -59,8 +59,8 @@ gap:6px;
 transition:.3s;
 }
 .dropdown-menu-custom a:hover {
-  background: #ff6b00;
-  color: white !important;
+  background-color: #f1592a !important;
+  color: #fff !important;
 }
 
 .header-btn:hover{

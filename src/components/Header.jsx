@@ -50,9 +50,21 @@ useEffect(() => {
   fetchMenu();
 }, []);
 
+useEffect(() => {
+  const handleClickOutside = () => {
+    setOpenDropdown(null);
+  };
+
+  document.addEventListener("click", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("click", handleClickOutside);
+  };
+}, []);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null); // Mobile click control
-  const [hoveredIndex, setHoveredIndex] = useState(null); // Desktop hover control
+  // const [hoveredIndex, setHoveredIndex] = useState(null); // Desktop hover control
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -124,11 +136,17 @@ useEffect(() => {
                 <li
                   key={index}
                   className="position-relative h-100 py-1"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  // onMouseEnter={() => setHoveredIndex(index)}
+                  // onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {item.dropdown ? (
-                    <button className="px-3 d-flex align-items-center gap-1 fs-6 fw-bold text-uppercase">
+                    <button
+                    className="px-3 d-flex align-items-center gap-1 fs-6 fw-bold text-uppercase"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenDropdown(openDropdown === index ? null : index);
+                    }}
+                  >
                       {item.title}
                       <i className="fa-solid fa-chevron-down"></i>
                     </button>
@@ -139,7 +157,7 @@ useEffect(() => {
                   )}
 
                   {/* DROPDOWN - State based visibility */}
-                  {item.dropdown && hoveredIndex === index && (
+                  {item.dropdown && openDropdown === index && (
                     <div className="position-absolute start-0 top-100 pt-2 dropdown-menu-custom" style={{ minWidth: '16rem' }}>
                       <div className="bg-white shadow rounded-3 border overflow-hidden py-2 animate-fade-in">
                         {item.dropdown.map((sub, si) => (
