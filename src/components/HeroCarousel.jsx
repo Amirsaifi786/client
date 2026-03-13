@@ -57,21 +57,29 @@ const handleSearch = (e) => {
 
   e.preventDefault();
 
+  let url = "/all-properties";
   const params = new URLSearchParams();
 
   if (selectedLocation) {
-    const slug = selectedLocation.toLowerCase().replace(/\s+/g, "-");
-    params.append("location", slug);
+
+    const slug = selectedLocation
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+
+    url = `/location/${slug}`;
   }
 
   if (selectedType) {
     params.append("type", selectedType);
   }
 
-  navigate(`/location/${params.toString()}`);
+  if (params.toString()) {
+    url += `?${params.toString()}`;
+  }
+
+  navigate(url);
 
 };
-
   return (
     <div  className="parallax"
       style={{
