@@ -14,7 +14,7 @@ function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
-
+const [selectedType, setSelectedType] = useState("");
   const slides = [
     { id: 1, bgImage: slider2 },
     { id: 2, bgImage: slider1 },
@@ -53,26 +53,34 @@ function HeroCarousel() {
   };
 
   // SEARCH CLICK
-  const handleSearch = (e) => {
-    e.preventDefault();
+const handleSearch = (e) => {
 
-    if (selectedLocation) {
-      const slug = slugify(selectedLocation);
-      navigate(`/location/${slug}`);
-    }
-  };
+  e.preventDefault();
+
+  const params = new URLSearchParams();
+
+  if (selectedLocation) {
+    const slug = selectedLocation.toLowerCase().replace(/\s+/g, "-");
+    params.append("location", slug);
+  }
+
+  if (selectedType) {
+    params.append("type", selectedType);
+  }
+
+  navigate(`/location/${params.toString()}`);
+
+};
 
   return (
-    <div
-      className="parallax"
+    <div  className="parallax"
       style={{
         backgroundImage: `url(${slides[activeIndex].bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "500px",
         position: "relative"
-      }}
-    >
+      }}>
 
       <div className="container text-center text-white"
         style={{ paddingTop: "120px" }}
@@ -83,46 +91,54 @@ function HeroCarousel() {
         </h2>
 
       
-                  <form onSubmit={handleSearch}>
-                    <div className="row g-2 with-forms justify-content-center">
+      <form onSubmit={handleSearch}>
+  <div className="row g-2 with-forms justify-content-center">
 
-                      <div className="col-md-3">
-                        <select className="form-select custom-input">
-                          <option>Any type</option>
-                          <option>Houses</option>
-                          <option>Flats</option>
-                          <option>Boys PG</option>
-                          <option>Girls PG</option>
-                        </select>
-                      </div>
+    {/* PROPERTY TYPE */}
+    <div className="col-md-3">
+      <select
+        className="form-select custom-input"
+        value={selectedType}
+        onChange={(e) => setSelectedType(e.target.value)}
+      >
 
-                      {/* LOCATION API */}
-                      <div className="col-md-7">
-                        <select
-                          className="form-select custom-input"
-                          value={selectedLocation}
-                          onChange={(e) => setSelectedLocation(e.target.value)}
-                        >
+        <option value="">Any type</option>
+        <option value="Houses">Houses</option>
+        <option value="Flats">Flats</option>
+        <option value="Boys PG">Boys PG</option>
+        <option value="Girls PG">Girls PG</option>
 
-                          <option value="">Anywhere in Jaipur</option>
+      </select>
+    </div>
 
-                          {locations.map((loc) => (
-                            <option key={loc.id} value={loc.title}>
-                              {loc.title}
-                            </option>
-                          ))}
+    {/* LOCATION */}
+    <div className="col-md-7">
+      <select
+        className="form-select custom-input"
+        value={selectedLocation}
+        onChange={(e) => setSelectedLocation(e.target.value)}
+      >
 
-                        </select>
-                      </div>
+        <option value="">Anywhere in Jaipur</option>
 
-                      <div className="col-md-auto">
-                        <button className="btn custom-input btn-primary">
-                          <i className="fa-solid fa-magnifying-glass" />
-                        </button>
-                      </div>
+        {locations.map((loc) => (
+          <option key={loc.id} value={loc.title}>
+            {loc.title}
+          </option>
+        ))}
 
-                    </div>
-                  </form>
+      </select>
+    </div>
+
+    {/* SEARCH */}
+    <div className="col-md-auto">
+      <button className="btn custom-input btn-primary">
+        <i className="fa-solid fa-magnifying-glass" />
+      </button>
+    </div>
+
+  </div>
+</form>
 
                   <div className="adv-search-btn mt-3">
                     Need more search options?{' '}
