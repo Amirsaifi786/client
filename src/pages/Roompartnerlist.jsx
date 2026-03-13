@@ -1,7 +1,7 @@
 // import React from 'react'
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "../components/Roomlist.css";
+import "./Roomlist.css";
 const Roompartnerlist = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 4;

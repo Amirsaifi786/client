@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import "./Header.css";
 import Topbar from "./Topbar";
+import API from "../api/axios";
 function Header() {
+  
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
@@ -25,6 +27,29 @@ useEffect(() => {
   };
 }, []);
 
+const [menuItems, setMenuItems] = useState([]);
+
+useEffect(() => {
+  const fetchMenu = async () => {
+    try {
+      const res = await API.get("/property/menu");
+      const data = res.data;
+
+      // Convert object to array for easier mapping
+      const items = Object.keys(data).map(key => ({
+        title: key,        // Houses / Flats / PG/Hostel
+        dropdown: data[key]
+      }));
+
+      setMenuItems(items);
+    } catch (err) {
+      console.error("Menu fetch error:", err);
+    }
+  };
+
+  fetchMenu();
+}, []);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null); // Mobile click control
   const [hoveredIndex, setHoveredIndex] = useState(null); // Desktop hover control
@@ -36,41 +61,41 @@ useEffect(() => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
-    {
-      title: "Houses",
-      dropdown: [
-        { title: "All Property", path: "/allproperty" },
-        { title: "One Room Set", path: "/three-room-set-for-rent-in-jaipur" },
-        { title: "Two Rooms Set", path: "/three-room-set-for-rent-in-jaipur" },
-        { title: "Three Rooms Set", path: "/three-room-set-for-rent-in-jaipur" },
-        { title: "Four Rooms Set", path: "/three-room-set-for-rent-in-jaipur" },
-      ],
-    },
-    {
-      title: "Flats",
-      dropdown: [
-        { title: "1 BHK Flats", path: "/1bhk-flats" },
-        { title: "2 BHK Flats", path: "/2bhk-flats" },
-        { title: "3 BHK Flats", path: "/3bhk-flats" },
-        { title: "4 BHK Flats", path: "/4bhk-flats" },
-      ],
-    },
-    {
-      title: "PG/Hostel",
-      dropdown: [
-        { title: "PG | Hostel for Boys", path: "/pg-boys" },
-        { title: "PG | Hostel for Girls", path: "/pg-girls" },
-      ],
-    },
-    {
-      title: "People’s Need",
-      dropdown: [
-        { title: "RoomPartner/RoomSeeker", path: "/room-seekers" },
-      ],
-    },
+  // const menuItems = [
+  //   {
+  //     title: "Houses",
+  //     dropdown: [
+  //       { title: "All Property", path: "/allproperty" },
+  //       { title: "One Room Set", path: "/three-room-set-for-rent-in-jaipur" },
+  //       { title: "Two Rooms Set", path: "/three-room-set-for-rent-in-jaipur" },
+  //       { title: "Three Rooms Set", path: "/three-room-set-for-rent-in-jaipur" },
+  //       { title: "Four Rooms Set", path: "/three-room-set-for-rent-in-jaipur" },
+  //     ],
+  //   },
+  //   {
+  //     title: "Flats",
+  //     dropdown: [
+  //       { title: "1 BHK Flats", path: "/1bhk-flats" },
+  //       { title: "2 BHK Flats", path: "/2bhk-flats" },
+  //       { title: "3 BHK Flats", path: "/3bhk-flats" },
+  //       { title: "4 BHK Flats", path: "/4bhk-flats" },
+  //     ],
+  //   },
+  //   {
+  //     title: "PG/Hostel",
+  //     dropdown: [
+  //       { title: "PG | Hostel for Boys", path: "/pg-boys" },
+  //       { title: "PG | Hostel for Girls", path: "/pg-girls" },
+  //     ],
+  //   },
+  //   {
+  //     title: "People’s Need",
+  //     dropdown: [
+  //       { title: "RoomPartner/RoomSeeker", path: "/room-seekers" },
+  //     ],
+  //   },
 
-  ];
+  // ];
 
   return (
     <div className="text-dark">

@@ -4,23 +4,57 @@ const multer = require("multer");
 const db = require("../db");
 const nodemailer = require("nodemailer");
 router.get("/menu", (req, res) => {
-
   const sql = `
-    SELECT propertyType, rooms, title, slug 
+    SELECT propertyType, rooms, title
     FROM properties
     WHERE status = 1
   `;
 
   db.query(sql, (err, result) => {
+    if (err) return res.status(500).json({ message: "DB error", error: err });
 
-    if (err) {
-      return res.status(500).json(err);
-    }
+    const menu = { Houses: [], Flats: [], "PG/Hostel": [] };
+    const seen = new Set();
 
-    res.json(result);
+    result.forEach(item => {
+      if (!item.propertyType) return;
 
+      const type = item.propertyType.toLowerCase().trim();
+      let slug = "";
+      let displayTitle = "";
+
+      if (type === "house" || type === "houses") {
+        const rooms = item.rooms || 0;
+        slug = rooms ? `${rooms}-room` : item.title.toLowerCase().replace(/\s+/g, "-");
+        displayTitle = rooms ? `${rooms} Room Set` : item.title;
+        if (!seen.has(slug)) {
+          menu.Houses.push({ title: displayTitle, path: `/property/${slug}` });
+          seen.add(slug);
+        }
+      } else if (type === "flat" || type === "flats") {
+        const rooms = item.rooms || 0;
+        slug = rooms ? `${rooms}-bhk` : item.title.toLowerCase().replace(/\s+/g, "-");
+        displayTitle = rooms ? `${rooms} BHK Flats` : item.title;
+        if (!seen.has(slug)) {
+          menu.Flats.push({ title: displayTitle, path: `/property/${slug}` });
+          seen.add(slug);
+        }
+      } else if (type === "pg" || type === "hostel") {
+        // safe slug, remove special characters
+        slug = item.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+        displayTitle = item.title;
+        if (!seen.has(slug)) {
+          menu["PG/Hostel"].push({ title: displayTitle, path: `/property/${slug}` });
+          seen.add(slug);
+        }
+      }
+    });
+
+    res.json(menu);
   });
-
 });
 
 const storage = multer.diskStorage({

@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/allproperty" element={<Roomlist />} />
+          <Route path="/property/:slug?" element={<Roomlist />} />
           <Route path="/location/:slug" element={<Roomlist />} />
           <Route path="/property/:slug" element={<PropertyDetail />} />
           <Route path="/submit-property" element={<SubmitProperty />} />

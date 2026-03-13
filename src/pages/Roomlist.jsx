@@ -7,7 +7,30 @@ import placeholder from "../assets/images/property-placeholder.png";
 const Roomlist = () => {
 
   const { slug } = useParams();
+const parseSlug = (slug) => {
+  if (!slug) return {};
 
+  // 1-room , 2-room
+  if (slug.includes("room")) {
+    return {
+      type: "house",
+      rooms: slug.split("-")[0]
+    };
+  }
+
+  // 1-bhk , 2-bhk
+  if (slug.includes("bhk")) {
+    return {
+      type: "flat",
+      rooms: slug.split("-")[0]
+    };
+  }
+
+  // pg / hostel
+  return {
+    type: "pg"
+  };
+};
   /* ================= STATES ================= */
 
   const [properties, setProperties] = useState([]);
@@ -27,43 +50,36 @@ const Roomlist = () => {
 
   /* ================= FETCH API ================= */
 
-  useEffect(() => {
+useEffect(() => {
+  const fetchProperties = async () => {
+    setLoading(true);
 
-    const fetchProperties = async () => {
+    try {
+      const params = new URLSearchParams();
 
-      setLoading(true);
+      const slugFilters = parseSlug(slug); 
+      if (slugFilters.type) params.append("type", slugFilters.type);
+      if (slugFilters.rooms) params.append("rooms", Number(slugFilters.rooms));
 
-      try {
-        const params = new URLSearchParams();
+      if (filters.location) params.append("location", filters.location);
+      if (filters.baths) params.append("baths", Number(filters.baths));
 
-        if (slug) params.append("location", slug);
-        if (filters.location) params.append("location", filters.location);
-        if (filters.type) params.append("type", filters.type);
-        if (filters.rooms) params.append("rooms", filters.rooms);
-        if (filters.baths) params.append("baths", filters.baths);
+      params.append("page", page);
+      params.append("limit", 6);
 
-        params.append("page", page);
-        params.append("limit", 6);
+      const res = await API.get(`/property/all-properties?${params.toString()}`);
+      setProperties(res.data.data || []);
+      setTotalPages(res.data.totalPages || 1);
+    } catch (err) {
+      console.log(err);
+    }
 
-        const res = await API.get(
-          `/property/all-properties?${params.toString()}`
-        );
+    setLoading(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-        setProperties(res.data.data || []);
-        setTotalPages(res.data.totalPages || 1);
-
-      } catch (err) {
-        console.log(err);
-      }
-
-      setLoading(false);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    fetchProperties();
-
-  }, [slug, filters, page]); // ✅ page added
-
+  fetchProperties();
+}, [slug, filters, page]);
   /* ================= HANDLERS ================= */
 
   const handleFormChange = (e) => {
