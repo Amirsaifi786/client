@@ -93,7 +93,6 @@ function HeroCarousel() {
                           <option>Flats</option>
                           <option>Boys PG</option>
                           <option>Girls PG</option>
-                          <option>Commercial</option>
                         </select>
                       </div>
 
