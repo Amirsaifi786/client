@@ -3,6 +3,61 @@ const router = express.Router();
 const multer = require("multer");
 const db = require("../db");
 const nodemailer = require("nodemailer");
+router.get("/slug/:slug", (req, res) => {
+  const { slug } = req.params;
+
+  const sql = `
+    SELECT 
+      properties.*,
+     CONCAT(users.firstName, ' ', users.lastName) AS owner_name,
+      users.phone AS user_phone,
+      users.role AS user_role
+    FROM properties
+    JOIN users ON users.id = properties.user_id
+    WHERE properties.slug = ?
+    LIMIT 1
+  `;
+
+  db.query(sql, [slug], (err, results) => {
+
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Database error" });
+    }
+
+    if (!results.length) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    const property = results[0];
+
+    const COMPANY_PHONE = "9876543210";
+
+    // ✅ Phone Logic
+    property.phone =
+      property.user_role === "Broker"
+        ? property.user_phone
+        : COMPANY_PHONE;
+
+    // ✅ Safe JSON Parser
+    const parseJSON = (data) => {
+      if (!data) return [];
+
+      if (Array.isArray(data)) return data;
+
+      try {
+        return JSON.parse(data);
+      } catch {
+        return data.split(",");
+      }
+    };
+
+    property.images = parseJSON(property.images);
+    property.features = parseJSON(property.features);
+
+    return res.json(property);
+  });
+});
 router.get("/menu", (req, res) => {
   const sql = `
     SELECT propertyType, rooms, title
@@ -483,59 +538,5 @@ router.get("/:id", (req, res) => {
     });
 
 });
-router.get("/slug/:slug", (req, res) => {
-  const { slug } = req.params;
 
-  const sql = `
-    SELECT 
-      properties.*,
-     CONCAT(users.firstName, ' ', users.lastName) AS owner_name,
-      users.phone AS user_phone,
-      users.role AS user_role
-    FROM properties
-    JOIN users ON users.id = properties.user_id
-    WHERE properties.slug = ?
-    LIMIT 1
-  `;
-
-  db.query(sql, [slug], (err, results) => {
-
-    if (err) {
-      console.log(err);
-      return res.status(500).json({ message: "Database error" });
-    }
-
-    if (!results.length) {
-      return res.status(404).json({ message: "Property not found" });
-    }
-
-    const property = results[0];
-
-    const COMPANY_PHONE = "9876543210";
-
-    // ✅ Phone Logic
-    property.phone =
-      property.user_role === "Broker"
-        ? property.user_phone
-        : COMPANY_PHONE;
-
-    // ✅ Safe JSON Parser
-    const parseJSON = (data) => {
-      if (!data) return [];
-
-      if (Array.isArray(data)) return data;
-
-      try {
-        return JSON.parse(data);
-      } catch {
-        return data.split(",");
-      }
-    };
-
-    property.images = parseJSON(property.images);
-    property.features = parseJSON(property.features);
-
-    return res.json(property);
-  });
-});
 module.exports = router;
