@@ -56,13 +56,13 @@ function Home() {
               <i className="fa-solid fa-house icon"></i>
               <h5>Houses / Flats</h5>
               <div className="links">
-                <a href="#">Houses</a>
-                <a href="#">Flats</a>
+                <Link to="/property/all-houses">Houses</Link>
+                <Link to="/property/all-flats">Flats</Link>
               </div>
             </div>
           </div>
 
-          <div className="col-6 col-md-3">
+          {/* <div className="col-6 col-md-3">
             <div className="property-box">
               <i className="fa-solid fa-building icon"></i>
               <h5>Office Shops</h5>
@@ -70,20 +70,20 @@ function Home() {
                 <a href="#">View Now</a>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="col-6 col-md-3">
             <div className="property-box">
               <i className="fa-solid fa-hotel icon"></i>
               <h5>PG / Hostel</h5>
               <div className="links">
-                <a href="#">Boys</a>
-                <a href="#">Girls</a>
+                <Link to="/property/boys-pg">Boys</Link>
+                <Link to="/property/girls-pg">Girls</Link>
               </div>
             </div>
           </div>
 
-          <div className="col-6 col-md-3">
+          {/* <div className="col-6 col-md-3">
             <div className="property-box">
               <i className="fa-solid fa-tag icon"></i>
               <h5>For Sale</h5>
@@ -91,7 +91,7 @@ function Home() {
                 <a href="#">View Now</a>
               </div>
             </div>
-          </div>
+          </div> */}
 
         </div>
       </div>
@@ -145,7 +145,7 @@ function Home() {
       </div>
 
       {/* FEATURED PROPERTIES */}
-     <FeaturedProperty properties ={properties}/>
+      <FeaturedProperty properties={properties} />
 
       {/* TESTIMONIALS */}
       <Testimonial />
