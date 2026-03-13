@@ -119,7 +119,7 @@ function MyResponses() {
                     <tr key={prop.id}>
                       <td>
                         <h5>
-                          <a href={`/property/${prop.slug}`}>{prop.title}</a>
+                          <a href={`/propertydetail/${prop.slug}`}>{prop.title}</a>
                           <br />
                           <small>
                             (Updated on{" "}
