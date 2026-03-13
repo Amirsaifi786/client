@@ -33,9 +33,9 @@ function SubmitProperty() {
     // const removeExistingImage = (index) => {
     //     setExistingImages(existingImages.filter((_, i) => i !== index));
     // };
-const removeExistingImage = (index) => {
-    setExistingImages(existingImages.filter((_, i) => i !== index));
-};
+    const removeExistingImage = (index) => {
+        setExistingImages(existingImages.filter((_, i) => i !== index));
+    };
     const fetchProperty = async (propertyId) => {
         try {
             const res = await API.get(`/property/${propertyId}`);
@@ -86,6 +86,8 @@ const removeExistingImage = (index) => {
         title: "",
 
         // PG fields
+        pgType: "",
+        roomType: "",
         singlePrice: "",
         doublePrice: "",
         triplePrice: "",
@@ -112,30 +114,30 @@ const removeExistingImage = (index) => {
     //     });
     // };
     const handleChange = (e) => {
-    const { name, value } = e.target;
+        const { name, value } = e.target;
 
-    setFormData((prev) => {
+        setFormData((prev) => {
 
-        let updated = { ...prev, [name]: value };
+            let updated = { ...prev, [name]: value };
 
-        if (name === "singlePrice" && value) {
-            updated.doublePrice = "";
-            updated.triplePrice = "";
-        }
+            if (name === "singlePrice" && value) {
+                updated.doublePrice = "";
+                updated.triplePrice = "";
+            }
 
-        if (name === "doublePrice" && value) {
-            updated.singlePrice = "";
-            updated.triplePrice = "";
-        }
+            if (name === "doublePrice" && value) {
+                updated.singlePrice = "";
+                updated.triplePrice = "";
+            }
 
-        if (name === "triplePrice" && value) {
-            updated.singlePrice = "";
-            updated.doublePrice = "";
-        }
+            if (name === "triplePrice" && value) {
+                updated.singlePrice = "";
+                updated.doublePrice = "";
+            }
 
-        return updated;
-    });
-};
+            return updated;
+        });
+    };
 
     // ================= FEATURES =================
     const handleFeatureChange = (feature) => {
@@ -232,80 +234,80 @@ const removeExistingImage = (index) => {
     //     }
     // };
     const handleSubmit = async (e) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    const data = new FormData();
+        const data = new FormData();
 
-    Object.keys(formData).forEach(key => {
-        data.append(key, formData[key]);
-    });
-
-    data.append("description", description);
-    data.append("features", JSON.stringify(selectedFeatures));
-    data.append("user_id", user?.id || "");
-
-    // ✅ NEW IMAGES
-    images.forEach(img => {
-        data.append("images", img);
-    });
-
-    // ✅ OLD IMAGES (remaining)
-    data.append("existingImages", JSON.stringify(existingImages));
-
-    try {
-
-        setLoading(true);
-
-        if (isEditMode) {
-            await API.put(`/property/${propertyId}`, data, {
-                headers: { "Content-Type": "multipart/form-data" }
-            });
-        } else {
-            await API.post("/property", data, {
-                headers: { "Content-Type": "multipart/form-data" }
-            });
-        }
-
-        setSuccessMessage("✅ Property submitted successfully!");
-        setErrorMessage("");
-
-        setLoading(false);
-
-        setTimeout(() => {
-            navigate("/my-properties");
-        }, 1000);
-
-        // RESET
-        setFormData({
-            offerType: "",
-            propertyType: "",
-            price: "",
-            rooms: "",
-            bathrooms: "",
-            parking: "",
-            address: "",
-            locality: "",
-            title: "",
-            singlePrice: "",
-            doublePrice: "",
-            triplePrice: "",
-            meals: ""
+        Object.keys(formData).forEach(key => {
+            data.append(key, formData[key]);
         });
 
-        setDescription("");
-        if (!isEditMode) {
-            setImages([]);
+        data.append("description", description);
+        data.append("features", JSON.stringify(selectedFeatures));
+        data.append("user_id", user?.id || "");
+
+        // ✅ NEW IMAGES
+        images.forEach(img => {
+            data.append("images", img);
+        });
+
+        // ✅ OLD IMAGES (remaining)
+        data.append("existingImages", JSON.stringify(existingImages));
+
+        try {
+
+            setLoading(true);
+
+            if (isEditMode) {
+                await API.put(`/property/${propertyId}`, data, {
+                    headers: { "Content-Type": "multipart/form-data" }
+                });
+            } else {
+                await API.post("/property", data, {
+                    headers: { "Content-Type": "multipart/form-data" }
+                });
+            }
+
+            setSuccessMessage("✅ Property submitted successfully!");
+            setErrorMessage("");
+
+            setLoading(false);
+
+            setTimeout(() => {
+                navigate("/my-properties");
+            }, 1000);
+
+            // RESET
+            setFormData({
+                offerType: "",
+                propertyType: "",
+                price: "",
+                rooms: "",
+                bathrooms: "",
+                parking: "",
+                address: "",
+                locality: "",
+                title: "",
+                singlePrice: "",
+                doublePrice: "",
+                triplePrice: "",
+                meals: ""
+            });
+
+            setDescription("");
+            if (!isEditMode) {
+                setImages([]);
+            }
+            setSelectedFeatures([]);
+
+        } catch (err) {
+
+            setErrorMessage("❌ Something went wrong!");
+            setSuccessMessage("");
+            setLoading(false);
+
         }
-        setSelectedFeatures([]);
-
-    } catch (err) {
-
-        setErrorMessage("❌ Something went wrong!");
-        setSuccessMessage("");
-        setLoading(false);
-
-    }
-};
+    };
 
     return (
         <>
@@ -398,7 +400,7 @@ const removeExistingImage = (index) => {
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
-                                    <option>4+</option>
+                                    <option>4</option>
                                 </select>
                             </div>
 
@@ -458,41 +460,72 @@ const removeExistingImage = (index) => {
                             </div>
 
                             <div className="card-body row">
-
+                                {/* PG TYPE */}
                                 <div className="col-md-4 mb-3">
-                                    <label>Single Seater Price (₹)</label>
-                                    <input type="number" name="singlePrice"
-                                        className="form-control"
-                                        value={formData.singlePrice}
-                                        onChange={handleChange} />
-                                </div>
-
-                                <div className="col-md-4 mb-3">
-                                    <label>Double Seater Price (₹)</label>
-                                    <input type="number" name="doublePrice"
-                                        className="form-control"
-                                        value={formData.doublePrice}
-                                        onChange={handleChange} />
-                                </div>
-
-                                <div className="col-md-4 mb-3">
-                                    <label>Triple Seater Price (₹)</label>
-                                    <input type="number" name="triplePrice"
-                                        className="form-control"
-                                        value={formData.triplePrice}
-                                        onChange={handleChange} />
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label>Meals Included</label>
-                                    <select name="meals"
+                                    <label>PG Type</label>
+                                    <select
+                                        name="pgType"
                                         className="form-select"
-                                        value={formData.meals}
-                                        onChange={handleChange}>
+                                        value={formData.pgType}
+                                        onChange={handleChange}
+                                    >
                                         <option value="">Select</option>
-                                        <option>Yes</option>
-                                        <option>No</option>
+                                        <option value="Boys">Boys PG</option>
+                                        <option value="Girls">Girls PG</option>
                                     </select>
+                                </div>
+                                {/* ROOM TYPE */}
+                                <div className="col-md-4 mb-3">
+                                    <label>Room Type</label>
+                                    <select
+                                        name="roomType"
+                                        className="form-select"
+                                        value={formData.roomType}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="Single">Single Seater</option>
+                                        <option value="Double">Double Seater</option>
+                                        <option value="Triple">Triple Seater</option>
+                                    </select>
+                                    {formData.roomType === "Single" && (
+                                        <div className="col-md-4 mb-3">
+                                            <label>Single Seater Price</label>
+                                            <input
+                                                type="number"
+                                                name="singlePrice"
+                                                className="form-control"
+                                                value={formData.singlePrice}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    )}
+
+                                    {formData.roomType === "Double" && (
+                                        <div className="col-md-4 mb-3">
+                                            <label>Double Seater Price</label>
+                                            <input
+                                                type="number"
+                                                name="doublePrice"
+                                                className="form-control"
+                                                value={formData.doublePrice}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    )}
+
+                                    {formData.roomType === "Triple" && (
+                                        <div className="col-md-4 mb-3">
+                                            <label>Triple Seater Price</label>
+                                            <input
+                                                type="number"
+                                                name="triplePrice"
+                                                className="form-control"
+                                                value={formData.triplePrice}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    )}
                                 </div>
 
                             </div>

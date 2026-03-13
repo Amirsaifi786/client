@@ -8,34 +8,35 @@ const Roomlist = () => {
 
   const { slug } = useParams();
   const parseSlug = (slug) => {
-    if (!slug) return {};
+  if (!slug) return {};
 
-    // Show all houses
-    if (slug === "all-houses") return { type: "house" };
-    if (slug === "all-flats") return { type: "flat" };
-    if (slug === "all-pg") return { type: "pg" };
+  // ALL TYPES
+  if (slug === "all-houses") return { type: "house" };
+  if (slug === "all-flats") return { type: "flat" };
+  if (slug === "all-pg") return { type: "pg" };
 
-    // 1-room , 2-room
-    if (slug.includes("room")) {
-      return {
-        type: "house",
-        rooms: slug.split("-")[0]
-      };
-    }
-
-    // 1-bhk , 2-bhk
-    if (slug.includes("bhk")) {
-      return {
-        type: "flat",
-        rooms: slug.split("-")[0]
-      };
-    }
-
-    // pg / hostel
+  // HOUSE ROOMS
+  if (slug.includes("room")) {
     return {
-      type: "pg"
+      type: "house",
+      rooms: slug.split("-")[0]
     };
+  }
+
+  // FLAT BHK
+  if (slug.includes("bhk")) {
+    return {
+      type: "flat",
+      rooms: slug.split("-")[0]
+    };
+  }
+
+  // PG TYPES
+  return {
+    type: "pg",
+    pgType: slug.replace(/-/g, " ")
   };
+};
   /* ================= STATES ================= */
 
   const [properties, setProperties] = useState([]);
@@ -63,8 +64,14 @@ const Roomlist = () => {
         const params = new URLSearchParams();
 
         const slugFilters = parseSlug(slug);
-        if (slugFilters.type) params.append("type", slugFilters.type);
-        if (slugFilters.rooms) params.append("rooms", Number(slugFilters.rooms));
+       if (slugFilters.type)
+        params.append("type", slugFilters.type);
+
+      if (slugFilters.rooms)
+        params.append("rooms", Number(slugFilters.rooms));
+
+      if (slugFilters.pgType)
+        params.append("pgType", slugFilters.pgType);
 
         if (filters.location) params.append("location", filters.location);
         if (filters.baths) params.append("baths", Number(filters.baths));

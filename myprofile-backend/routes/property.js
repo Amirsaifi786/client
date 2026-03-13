@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const db = require("../db");
 const nodemailer = require("nodemailer");
-router.get("/slug/:slug", (req, res) => {
+router.get("/slug/:slug", (req, res) => { 
   const { slug } = req.params;
 
   const sql = `
@@ -60,7 +60,7 @@ router.get("/slug/:slug", (req, res) => {
 });
 router.get("/menu", (req, res) => {
   const sql = `
-    SELECT propertyType, rooms, title
+    SELECT propertyType, rooms, title, pgType
     FROM properties
     WHERE status = 1
   `;
@@ -69,48 +69,91 @@ router.get("/menu", (req, res) => {
     if (err) return res.status(500).json({ message: "DB error", error: err });
 
     const menu = { Houses: [], Flats: [], "PG/Hostel": [] };
-    const seen = new Set();
 
-    // 1️⃣ Add "All" links first
+    const seenHouses = new Set();
+    const seenFlats = new Set();
+    const seenPg = new Set();
+
+    // All links
     menu.Houses.push({ title: "All Houses", path: "/property/all-houses" });
     menu.Flats.push({ title: "All Flats", path: "/property/all-flats" });
     menu["PG/Hostel"].push({ title: "All PG/Hostel", path: "/property/all-pg" });
 
-    // 2️⃣ Add individual entries dynamically
     result.forEach(item => {
       if (!item.propertyType) return;
 
       const type = item.propertyType.toLowerCase().trim();
+
       let slug = "";
       let displayTitle = "";
 
+      // 🏠 HOUSES
       if (type === "house" || type === "houses") {
+
         const rooms = item.rooms || 0;
-        slug = rooms ? `${rooms}-room` : item.title.toLowerCase().replace(/\s+/g, "-");
-        displayTitle = rooms ? `${rooms} Room Set` : item.title;
-        if (!seen.has(slug)) {
-          menu.Houses.push({ title: displayTitle, path: `/property/${slug}` });
-          seen.add(slug);
-        }
-      } else if (type === "flat" || type === "flats") {
-        const rooms = item.rooms || 0;
-        slug = rooms ? `${rooms}-bhk` : item.title.toLowerCase().replace(/\s+/g, "-");
-        displayTitle = rooms ? `${rooms} BHK Flats` : item.title;
-        if (!seen.has(slug)) {
-          menu.Flats.push({ title: displayTitle, path: `/property/${slug}` });
-          seen.add(slug);
-        }
-      } else if (type === "pg" || type === "hostel") {
-        slug = item.title
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, "");
-        displayTitle = item.title;
-        if (!seen.has(slug)) {
-          menu["PG/Hostel"].push({ title: displayTitle, path: `/property/${slug}` });
-          seen.add(slug);
+
+        slug = rooms
+          ? `${rooms}-room`
+          : item.title.toLowerCase().replace(/\s+/g, "-");
+
+        displayTitle = rooms
+          ? `${rooms} Room Set`
+          : item.title;
+
+        if (!seenHouses.has(slug)) {
+          menu.Houses.push({
+            title: displayTitle,
+            path: `/property/${slug}`
+          });
+
+          seenHouses.add(slug);
         }
       }
+
+      // 🏢 FLATS
+      else if (type === "flat" || type === "flats") {
+
+        const rooms = item.rooms || 0;
+
+        slug = rooms
+          ? `${rooms}-bhk`
+          : item.title.toLowerCase().replace(/\s+/g, "-");
+
+        displayTitle = rooms
+          ? `${rooms} BHK Flats`
+          : item.title;
+
+        if (!seenFlats.has(slug)) {
+          menu.Flats.push({
+            title: displayTitle,
+            path: `/property/${slug}`
+          });
+
+          seenFlats.add(slug);
+        }
+      }
+
+      // 🛏 PG / HOSTEL
+      else if (type === "pg" || type === "hostel") {
+
+        if (!item.pgType) return;
+
+        slug = item.pgType
+          .toLowerCase()
+          .replace(/\s+/g, "-");
+
+        displayTitle = item.pgType;
+
+        if (!seenPg.has(slug)) {
+          menu["PG/Hostel"].push({
+            title: displayTitle,
+            path: `/property/${slug}`
+          });
+
+          seenPg.add(slug);
+        }
+      }
+
     });
 
     res.json(menu);
@@ -254,6 +297,7 @@ router.post("/", upload.array("images"), (req, res) => {
     user_id,
     offerType,
     propertyType,
+     pgType,
     price,
     rooms,
     bathrooms,
@@ -287,6 +331,7 @@ router.post("/", upload.array("images"), (req, res) => {
     user_id,
     offerType,
     propertyType,
+     pgType,
     price,
     rooms,
     bathrooms,
@@ -304,13 +349,14 @@ router.post("/", upload.array("images"), (req, res) => {
     features,
     images
   )
-  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
   `;
 
   db.query(sql, [
     user_id,
     offerType,
     propertyType,
+     pgType,
     price,
     rooms,
     bathrooms,
