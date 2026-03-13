@@ -13,11 +13,11 @@ function Footer() {
             <div className="col-md-6">
               <img
                 src={logo}
-                alt="Room Rent Jaipur"
+                alt="Room Dekkho in  Jaipur"
                 className="logo-img h-12 w-20 mb-4"
               />
               <p className="text-muted" style={{maxWidth: '30rem'}}>
-                roomrentjaipur.com is the oldest real estate portal of Jaipur. Our
+                roomdekho.com is the oldest real estate portal of Jaipur. Our
                 aim is to give home-seekers and home-owners a simple yet innovative
                 interface where both parties can contact each other free of cost.
                 Our listings are 100% verified and showing genuine pictures of
@@ -35,8 +35,8 @@ function Footer() {
                 {[
                   { name: "My Account", path: "/account" },
                   { name: "Post your property", path: "/submit-property" },
-                  { name: "Room Partners", path: "/room-partners" },
-                  { name: "Room Seekers", path: "/room-seekers" },
+                  // { name: "Room Partners", path: "/room-partners" },
+                  // { name: "Room Seekers", path: "/room-seekers" },
                   { name: "Contact", path: "/contact" },
                   { name: "Privacy Policy", path: "/privacy-policy" }
                 ].map((link) => (

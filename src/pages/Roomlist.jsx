@@ -77,7 +77,12 @@ const Roomlist = () => {
         params.append("pgType", slugFilters.pgType);
 
         if (filters.location) params.append("location", filters.location);
-        if (filters.baths) params.append("baths", Number(filters.baths));
+
+if (filters.type) params.append("type", filters.type);
+
+if (filters.rooms) params.append("rooms", Number(filters.rooms));
+
+if (filters.baths) params.append("baths", Number(filters.baths));
 
         params.append("page", page);
         params.append("limit", 6);
@@ -137,7 +142,7 @@ const Roomlist = () => {
 
             <div className="text-center py-5">
               <h4 className="fw-semibold text-muted">
-                No Properties Found 😔
+                No Properties Found 
               </h4>
 
               <p className="text-muted">
