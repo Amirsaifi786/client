@@ -16,6 +16,12 @@ router.get("/menu", (req, res) => {
     const menu = { Houses: [], Flats: [], "PG/Hostel": [] };
     const seen = new Set();
 
+    // 1️⃣ Add "All" links first
+    menu.Houses.push({ title: "All Houses", path: "/property/all-houses" });
+    menu.Flats.push({ title: "All Flats", path: "/property/all-flats" });
+    menu["PG/Hostel"].push({ title: "All PG/Hostel", path: "/property/all-pg" });
+
+    // 2️⃣ Add individual entries dynamically
     result.forEach(item => {
       if (!item.propertyType) return;
 
@@ -40,7 +46,6 @@ router.get("/menu", (req, res) => {
           seen.add(slug);
         }
       } else if (type === "pg" || type === "hostel") {
-        // safe slug, remove special characters
         slug = item.title
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, "-")
