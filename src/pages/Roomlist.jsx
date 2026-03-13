@@ -6,7 +6,7 @@ import placeholder from "../assets/images/property-placeholder.png";
 
 const Roomlist = () => {
 
-  const { slug } = useParams();
+  const { slug, locationSlug } = useParams();
   const parseSlug = (slug) => {
   if (!slug) return {};
 
@@ -62,8 +62,11 @@ const Roomlist = () => {
 
       try {
         const params = new URLSearchParams();
+        if (locationSlug) {
+          params.append("location", locationSlug);
+        }
 
-        const slugFilters = parseSlug(slug);
+        const slugFilters = slug ? parseSlug(slug) : {};
        if (slugFilters.type)
         params.append("type", slugFilters.type);
 

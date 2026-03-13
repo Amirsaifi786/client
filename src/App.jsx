@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/property/:slug?" element={<Roomlist />} />
-          <Route path="/location/:slug" element={<Roomlist />} />
+          <Route path="/location/:locationSlug" element={<Roomlist />} />
           <Route path="/propertydetail/:slug" element={<PropertyDetail />} />
           <Route path="/submit-property" element={<SubmitProperty />} />
           <Route path="/room-seekers" element={<Roompartnerlist />} />

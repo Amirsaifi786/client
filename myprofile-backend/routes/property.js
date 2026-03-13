@@ -205,11 +205,15 @@ router.get("/all-properties", (req, res) => {
   let params = [];
 
   // location
-  if (location) {
-    location = location.replace(/-/g, " ");
-    sql += " AND LOWER(properties.locality)=LOWER(?)";
-    params.push(location);
-  }
+  // location filter
+if (location) {
+
+  location = location.replace(/-/g, " ");
+
+  sql += " AND LOWER(properties.locality) LIKE LOWER(?)";
+
+  params.push(`%${location}%`);
+}
 
   // type
   if (type) {
