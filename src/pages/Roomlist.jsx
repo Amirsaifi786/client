@@ -7,35 +7,35 @@ import placeholder from "../assets/images/property-placeholder.png";
 const Roomlist = () => {
 
   const { slug } = useParams();
-const parseSlug = (slug) => {
-  if (!slug) return {};
+  const parseSlug = (slug) => {
+    if (!slug) return {};
 
-  // Show all houses
-  if (slug === "all-houses") return { type: "house" };
-  if (slug === "all-flats") return { type: "flat" };
-  if (slug === "all-pg") return { type: "pg" };
+    // Show all houses
+    if (slug === "all-houses") return { type: "house" };
+    if (slug === "all-flats") return { type: "flat" };
+    if (slug === "all-pg") return { type: "pg" };
 
-  // 1-room , 2-room
-  if (slug.includes("room")) {
+    // 1-room , 2-room
+    if (slug.includes("room")) {
+      return {
+        type: "house",
+        rooms: slug.split("-")[0]
+      };
+    }
+
+    // 1-bhk , 2-bhk
+    if (slug.includes("bhk")) {
+      return {
+        type: "flat",
+        rooms: slug.split("-")[0]
+      };
+    }
+
+    // pg / hostel
     return {
-      type: "house",
-      rooms: slug.split("-")[0]
+      type: "pg"
     };
-  }
-
-  // 1-bhk , 2-bhk
-  if (slug.includes("bhk")) {
-    return {
-      type: "flat",
-      rooms: slug.split("-")[0]
-    };
-  }
-
-  // pg / hostel
-  return {
-    type: "pg"
   };
-};
   /* ================= STATES ================= */
 
   const [properties, setProperties] = useState([]);
@@ -55,36 +55,36 @@ const parseSlug = (slug) => {
 
   /* ================= FETCH API ================= */
 
-useEffect(() => {
-  const fetchProperties = async () => {
-    setLoading(true);
+  useEffect(() => {
+    const fetchProperties = async () => {
+      setLoading(true);
 
-    try {
-      const params = new URLSearchParams();
+      try {
+        const params = new URLSearchParams();
 
-      const slugFilters = parseSlug(slug); 
-      if (slugFilters.type) params.append("type", slugFilters.type);
-      if (slugFilters.rooms) params.append("rooms", Number(slugFilters.rooms));
+        const slugFilters = parseSlug(slug);
+        if (slugFilters.type) params.append("type", slugFilters.type);
+        if (slugFilters.rooms) params.append("rooms", Number(slugFilters.rooms));
 
-      if (filters.location) params.append("location", filters.location);
-      if (filters.baths) params.append("baths", Number(filters.baths));
+        if (filters.location) params.append("location", filters.location);
+        if (filters.baths) params.append("baths", Number(filters.baths));
 
-      params.append("page", page);
-      params.append("limit", 6);
+        params.append("page", page);
+        params.append("limit", 6);
 
-      const res = await API.get(`/property/all-properties?${params.toString()}`);
-      setProperties(res.data.data || []);
-      setTotalPages(res.data.totalPages || 1);
-    } catch (err) {
-      console.log(err);
-    }
+        const res = await API.get(`/property/all-properties?${params.toString()}`);
+        setProperties(res.data.data || []);
+        setTotalPages(res.data.totalPages || 1);
+      } catch (err) {
+        console.log(err);
+      }
 
-    setLoading(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+      setLoading(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
-  fetchProperties();
-}, [slug, filters, page]);
+    fetchProperties();
+  }, [slug, filters, page]);
   /* ================= HANDLERS ================= */
 
   const handleFormChange = (e) => {
@@ -153,43 +153,103 @@ useEffect(() => {
                 }
 
                 return (
-                  <div key={item.id} className="card mb-4 shadow-sm">
+
+                  <div key={item.id} className="card property-card mb-4 shadow-sm">
+
                     <div className="row g-0">
 
-                      <div className="col-md-5">
+                      {/* IMAGE SECTION */}
+                      <div className="col-md-5 position-relative property-img">
+
                         <img
                           src={image}
-                          className="w-100"
-                          style={{ height: 220, objectFit: "cover" }}
-                          alt=""
+                          className="w-100 h-100"
+                          style={{ height: 230, objectFit: "cover" }}
+                          alt={item.title}
                         />
+
+                        {/* PRICE WITH GRADIENT */}
+                        <div className="price-overlay ">
+
+                          ₹{item.price || item.singlePrice || item.doublePrice} / Monthly
+
+                        </div>
+
                       </div>
 
-                      <div className="col-md-7 p-4">
-                        <h5>
-                          <Link to={`/propertydetail/${item.slug}`}>
-                            {item.title}
+                      {/* DETAILS */}
+                      <div className="col-md-7 p-4 d-flex flex-column justify-content-between">
+
+                        <div>
+
+                          <h5 className="property-title">
+                            <Link to={`/propertydetail/${item.slug}`}>
+                              {item.title}
+                            </Link>
+                          </h5>
+
+                          <p className="text-muted mb-2">
+                            <i className="fa fa-map-marker me-1"></i>
+                            {item.locality}
+                          </p>
+                          <p className="text-muted mb-2 text-orange">
+                            <i className="fa fa-clock me-1 "></i>
+                            {new Date(item.created_at).toLocaleString("en-IN", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit"
+                            })}
+                          </p>
+                          {/* PROPERTY FEATURES */}
+                          <div className="property-features p-2">
+
+                            <span>
+                              <i className="fa fa-bed"></i> {item.rooms} Rooms
+                            </span>
+
+                            <span>
+                              <i className="fa fa-bath"></i> {item.bathrooms} Baths
+                            </span>
+
+                            <span>
+                              <i className="fa fa-car"></i> Parking
+                            </span>
+
+                          </div>
+
+                        </div>
+
+                        {/* BOTTOM ACTIONS */}
+                        <div className="d-flex justify-content-between align-items-center mt-3">
+
+                          {/* PHONE */}
+                          <a href={`tel:${item.phone}`} className="phone-btn">
+
+                            <i className="fa fa-phone"></i> {item.phone || "Call Now"}
+
+                          </a>
+
+                          {/* DETAIL BUTTON */}
+                          <Link
+                            to={`/propertydetail/${item.slug}`}
+                            className="phone-btn"
+                          >
+                            View Details
                           </Link>
-                        </h5>
 
-                        <p>{item.locality}</p>
+                        </div>
 
-                        <p>
-                          Rooms: {item.rooms} | Baths: {item.bathrooms}
-                        </p>
-
-                        <h6>
-                          ₹{item.price ||
-                            item.singlePrice ||
-                            item.doublePrice}
-                        </h6>
                       </div>
 
                     </div>
-                  </div>
-                );
-              })}
 
+                  </div>
+
+                );
+
+              })}
               {/* ================= PAGINATION ================= */}
 
               {totalPages > 1 && (
@@ -208,11 +268,10 @@ useEffect(() => {
                     <button
                       key={i}
                       onClick={() => setPage(i + 1)}
-                      className={`btn ${
-                        page === i + 1
+                      className={`btn ${page === i + 1
                           ? "bg-orange text-white"
                           : "btn-outline-secondary"
-                      }`}
+                        }`}
                     >
                       {i + 1}
                     </button>

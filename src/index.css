@@ -4,9 +4,9 @@
     color: #707070;
     overflow-x: hidden;
 }
-
+.bg-orange:hover {background-color: #ffffff ; color :  black !important ; border: 2px solid #fe8628; }
 .bg-orange { background-color: #fe8628; }
-.hover-bg-orange:hover { background-color: #f1592a !important; }
+.hover-bg-orange:hover { background-color: #ffffff !important; }
 .hover-text-orange:hover { color: #f1592a !important; }
 .hover-text-white:hover { color: #ffffff !important; }
 .text-orange { color: #f1592a; }
