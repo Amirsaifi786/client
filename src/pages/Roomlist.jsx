@@ -10,6 +10,11 @@ const Roomlist = () => {
 const parseSlug = (slug) => {
   if (!slug) return {};
 
+  // Show all houses
+  if (slug === "all-houses") return { type: "house" };
+  if (slug === "all-flats") return { type: "flat" };
+  if (slug === "all-pg") return { type: "pg" };
+
   // 1-room , 2-room
   if (slug.includes("room")) {
     return {
