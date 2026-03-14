@@ -164,8 +164,7 @@ useEffect(() => {
                           <Link
                             key={si}
                             to={sub.path}
-                            className="d-block px-3 py-2 fs-6 fw-semibold text-secondary hover-bg-orange hover-text-orange transition"
-                          >
+                            className="d-block px-3 py-2 fs-6 fw-semibold text-secondary hover-bg-orange hover-text-orange transition"                          >
                             {sub.title}
                           </Link>
                         ))}
@@ -174,6 +173,18 @@ useEffect(() => {
                   )}
                 </li>
               ))}
+<li className="position-relative h-100 py-1">
+  <button className="contactmanu px-3 d-flex align-items-center gap-1">
+    
+    <Link
+      to="/contact"
+      className="contact-link px-3 fs-6 fw-bold text-uppercase"
+    >
+      Contact
+    </Link>
+
+  </button>
+</li>
             </ul>
           </nav>
 

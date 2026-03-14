@@ -1,5 +1,17 @@
 /* HEADER */
+.contactmanu{
+border:none;
+background:#f1592a;
+}
 
+.contact-link{
+text-decoration:none;
+color:black;
+}
+
+.contactmanu:hover .contact-link{
+color:white;
+}
 header{
 position:sticky;
 top:0;

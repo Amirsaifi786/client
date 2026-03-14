@@ -53,15 +53,41 @@ const [selectedType, setSelectedType] = useState("");
   };
 
   // SEARCH CLICK
+// const handleSearch = (e) => {
+
+//   e.preventDefault();
+
+//   let url = "/property";
+//   const params = new URLSearchParams();
+
+//   if (selectedLocation) {
+
+//     const slug = selectedLocation
+//       .toLowerCase()
+//       .replace(/\s+/g, "-");
+
+//     url = `/property/${slug}`;
+//   }
+
+//   if (selectedType) {
+//     params.append("/", selectedType);
+//   }
+
+//   if (params.toString()) {
+//     url += `/${params.toString()}`;
+//   }
+
+//   navigate(url);
+
+// };
 const handleSearch = (e) => {
 
   e.preventDefault();
 
-  let url = "/all-properties";
+  let url = "/property";
   const params = new URLSearchParams();
 
   if (selectedLocation) {
-
     const slug = selectedLocation
       .toLowerCase()
       .replace(/\s+/g, "-");
@@ -74,11 +100,10 @@ const handleSearch = (e) => {
   }
 
   if (params.toString()) {
-    url += `?${params.toString()}`;
+    url += `/${selectedType}`;
   }
 
   navigate(url);
-
 };
   return (
     <div  className="parallax"
@@ -111,10 +136,10 @@ const handleSearch = (e) => {
       >
 
         <option value="">Any type</option>
-        <option value="Houses">Houses</option>
-        <option value="Flats">Flats</option>
-        <option value="Boys PG">Boys PG</option>
-        <option value="Girls PG">Girls PG</option>
+        <option value="all-houses">Houses</option>
+        <option value="all-flats">Flats</option>
+        <option value="all-pg">Boys/Girls PG</option>
+        {/* <option value="Girls PG">Girls PG</option> */}
 
       </select>
     </div>

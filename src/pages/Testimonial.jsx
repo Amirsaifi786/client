@@ -1,6 +1,7 @@
 import React from "react";
 import "./Testimonial.css";
 import user from "../assets/user.jpg";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -9,55 +10,66 @@ import "swiper/css/pagination";
 
 export default function Testimonial() {
 
-  // Only positive reviews here ✅
-  const testimonials = [
-    {
-      id: 1,
-      name: "Mukesh C.",
-      role: "Tenant",
-      image:
-        user,
-      review: "Great & precise service. Thanks to the team!",
-    },
-    {
-      id: 2,
-      name: "Ritika Sharma",
-      role: "Property Owner",
-      image:
-    user,
-      review:
-        "Posting my property was very easy and I received responses quickly.",
-    },
-    {
-      id: 3,
-      name: "Amit Verma",
-      role: "Tenant",
-      image:
-        user,
-      review:
-        "Smooth experience! Found a room within 2 days. Highly recommended.",
-    },
-  ];
-
+const testimonials = [
+  {
+    id: 1,
+    name: "Rohit Sharma",
+    image: user,
+    review:
+      "Room Dekho helped me find a clean and affordable room near my office in just 2 days. The process was smooth and hassle-free.",
+  },
+  {
+    id: 2,
+    name: "Pooja Verma",
+    image: user,
+    review:
+      "I posted my PG listing on Room Dekho and received multiple enquiries within a day. Highly recommended for property owners.",
+  },
+  {
+    id: 3,
+    name: "Aman Khan",
+    image: user,
+    review:
+      "Great platform for students and working professionals. I easily found a good PG in Vidhyadhar Nagar at a reasonable price.",
+  },
+  {
+    id: 4,
+    name: "Nasir Ali",
+    image: user,
+    review:
+      "Very helpful service! I shifted to Jaipur recently and this website made it easy to find a rental room quickly.",
+  },
+  {
+    id: 5,
+    name: "Neha Gupta",
+    image: user,
+    review:
+      "The website is simple to use and the property details are clear. I found a safe girls PG within my budget.",
+  },
+  {
+    id: 6,
+    name: "Rahul Meena",
+    image: user,
+    review:
+      "Room Dekho is one of the best platforms to search for rooms and flats in Jaipur. I found a 1RK very quickly.",
+  }
+];
   return (
-    <section className="testimonial-section py-5">
+    <section className="testimonial-section">
+
       <div className="container">
 
         {/* Heading */}
-        <div className="text-center mb-5">
-          <h3 className="fw-bold">What Our Clients Say</h3>
-          <p className="text-muted">
-            We collect reviews so you can get an honest opinion.
-          </p>
+        <div className="testimonial-heading text-center">
+          <h2>Testimonials</h2>
         </div>
 
-        {/* Slider */}
         <Swiper
           modules={[Autoplay, Pagination]}
-          spaceBetween={30}
+          spaceBetween={40}
           slidesPerView={3}
           autoplay={{
-            delay: 2500,
+            delay: 3000,
             disableOnInteraction: false,
           }}
           pagination={{ clickable: true }}
@@ -69,31 +81,35 @@ export default function Testimonial() {
         >
           {testimonials.map((item) => (
             <SwiperSlide key={item.id}>
-              <div className="testimonial-box bg-white p-4 rounded shadow-sm">
 
-               <p className="testimonial-text">
-                “{item.review}”
+              <div className="testimonial-card " style={{ marginTop: "30px" }}>
+
+                {/* Avatar */}
+                <div className="testimonial-avatar">
+                  <img src={item.image} alt={item.name} />
+                </div>
+
+                {/* Review */}
+                <p className="testimonial-review">
+                  {item.review}
                 </p>
 
-                <div className="d-flex align-items-center mt-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="testimonial-img me-3"
-                  />
+                {/* Name */}
+                <h6 className="testimonial-name">— {item.name}</h6>
 
-                  <div>
-                    <h6 className="mb-0 fw-semibold">{item.name}</h6>
-                    <small className="text-muted">{item.role}</small>
-                  </div>
+                {/* Stars */}
+                <div className="testimonial-stars">
+                  ★ ★ ★ ★ ★
                 </div>
 
               </div>
+
             </SwiperSlide>
           ))}
         </Swiper>
 
       </div>
+
     </section>
   );
 }
