@@ -185,7 +185,16 @@ const parseJSON = (data, fallback = []) => {
   return fallback;
 };
 
+<<<<<<< HEAD
 const upload = multer({ storage: storage });
+=======
+const upload = multer({ storage });
+
+const propertyUpload = upload.fields([
+  { name: "images", maxCount: 10 },
+  { name: "video", maxCount: 1 }
+]);
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
 router.get("/all-properties", (req, res) => {
 
@@ -300,7 +309,11 @@ if (pgType) {
   });
 });
 
+<<<<<<< HEAD
 router.post("/", upload.array("images"), (req, res) => {
+=======
+router.post("/", propertyUpload, (req, res) => {
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
   const {
     user_id,
@@ -323,7 +336,17 @@ router.post("/", upload.array("images"), (req, res) => {
     meals,
   } = req.body;
 
+<<<<<<< HEAD
   const images = req.files.map(file => file.filename);
+=======
+  const images = req.files.images
+  ? req.files.images.map(file => file.filename)
+  : [];
+
+const video = req.files.video
+  ? req.files.video[0].filename
+  : null;
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
   const slugify = (text) => {
     return text
@@ -356,9 +379,16 @@ router.post("/", upload.array("images"), (req, res) => {
     slug,
     description,
     features,
+<<<<<<< HEAD
     images
   )
   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+=======
+    images,
+    video
+  )
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
   `;
 
   db.query(sql, [
@@ -445,10 +475,22 @@ router.get("/property/:id", (req, res) => {
 });
 
 /* ===== UPDATE PROPERTY ===== */
+<<<<<<< HEAD
 router.put("/:id", upload.array("images"), (req, res) => {
 
   const propertyId = req.params.id;
 
+=======
+router.put("/:id", propertyUpload, (req, res) => {
+
+  const propertyId = req.params.id;
+
+const newVideo =
+  req.files.video && req.files.video.length > 0
+    ? req.files.video[0].filename
+    : req.body.existingVideo || null;
+
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
   const {
     offerType,
     propertyType,
@@ -516,7 +558,12 @@ router.put("/:id", upload.array("images"), (req, res) => {
       slug=?,
       description=?,
       features=?,
+<<<<<<< HEAD
       images=?
+=======
+      images=?,
+      video=?
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     WHERE id=?
   `;
 
@@ -539,6 +586,10 @@ router.put("/:id", upload.array("images"), (req, res) => {
     description,
     features,
     JSON.stringify(finalImages),
+<<<<<<< HEAD
+=======
+    newVideo,
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     propertyId
   ], (err) => {
 

@@ -207,4 +207,56 @@
 
 .btn-orange:hover {
   background: #d94c21;
+<<<<<<< HEAD
+=======
+}
+
+.hero-overlay{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:20px;
+background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+}
+
+.gallery-btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:black;
+color:white;
+border:none;
+padding:10px 15px;
+font-size:20px;
+cursor:pointer;
+opacity:.8;
+}
+
+.gallery-btn.left{ left:10px; }
+.gallery-btn.right{ right:10px; }
+
+.thumbnail{
+height:120px;
+object-fit:cover;
+cursor:pointer;
+border:2px solid transparent;
+border-radius:6px;
+}
+
+.thumbnail.active{
+border:3px solid orange;
+}
+
+.video-wrapper video{
+width:100%;
+border-radius:8px;
+}
+
+.price-card{
+background:#f8f9fa;
+padding:20px;
+border-radius:10px;
+text-align:center;
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 }

@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://backend-3-vlsy.onrender.com/api",
 });
-export const IMAGE_URL = "http://localhost:5000/uploads";
+export const IMAGE_URL = "https://backend-3-vlsy.onrender.com/uploads";
 
 export default API;

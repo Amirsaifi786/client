@@ -6,6 +6,10 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useDropzone } from "react-dropzone";
 import { useParams } from "react-router-dom";
+<<<<<<< HEAD
+=======
+import "./SubmitProperty.css";
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 function SubmitProperty() {
     const { id } = useParams();
     const propertyId = id;
@@ -14,6 +18,11 @@ function SubmitProperty() {
     const isEditMode = !!propertyId;
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
+=======
+    const [video, setVideo] = useState(null);
+    const [videoUrl, setVideoUrl] = useState(null);
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     const [user, setUser] = useState(null);
     const [existingImages, setExistingImages] = useState([]);
     useEffect(() => {
@@ -67,6 +76,10 @@ function SubmitProperty() {
                     ? JSON.parse(data.images)
                     : data.images || []
             );
+<<<<<<< HEAD
+=======
+            setVideoUrl(data.video || null);
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
         } catch (err) {
             console.error(err);
@@ -113,6 +126,16 @@ function SubmitProperty() {
     //         [e.target.name]: e.target.value
     //     });
     // };
+<<<<<<< HEAD
+=======
+
+    const handleVideoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setVideo(file);
+        }
+    };
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -162,6 +185,7 @@ function SubmitProperty() {
         setImages(images.filter((_, i) => i !== index));
     };
 
+<<<<<<< HEAD
     // ================= SUBMIT =================
     // const handleSubmit = async (e) => {
     //     e.preventDefault();
@@ -233,6 +257,8 @@ function SubmitProperty() {
     //         setLoading(false);
     //     }
     // };
+=======
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -242,6 +268,15 @@ function SubmitProperty() {
             data.append(key, formData[key]);
         });
 
+<<<<<<< HEAD
+=======
+        if (video) {
+            data.append("video", video);
+        }
+        // EXISTING VIDEO
+        data.append("existingVideo", videoUrl || "");
+
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
         data.append("description", description);
         data.append("features", JSON.stringify(selectedFeatures));
         data.append("user_id", user?.id || "");
@@ -312,6 +347,7 @@ function SubmitProperty() {
     return (
         <>
             {/* ===== HEADER ===== */}
+<<<<<<< HEAD
             <div
                 style={{
                     background: "#7d746d",
@@ -325,13 +361,29 @@ function SubmitProperty() {
             </div>
 
             <div className="container mt-5">
+=======
+            <div className="bg-dark text-white text-center py-5 mb-4">
+                <h2 className="fw-bold mb-2">
+                    {isEditMode ? "Update Property" : "Submit Your Property"}
+                </h2>
+                <p className="mb-0 opacity-75">
+                    Fill details to list your property faster
+                </p>
+                </div>
+
+            <div className="container" style={{ maxWidth: "1100px" }}>
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
                 {successMessage && <div className="alert alert-success">{successMessage}</div>}
                 {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
                 <form onSubmit={handleSubmit}>
                     {/* ================= BASIC INFO ================= */}
+<<<<<<< HEAD
                     <div className="card shadow-sm mb-4">
+=======
+                   <div className="card shadow-sm mb-4 form-section">
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                         <div className="card-header bg-light">
                             <h5>Basic Information</h5>
                         </div>
@@ -459,6 +511,7 @@ function SubmitProperty() {
                                 <h5>PG / Hostel Details</h5>
                             </div>
 
+<<<<<<< HEAD
                             <div className="card-body row">
                                 {/* PG TYPE */}
                                 <div className="col-md-4 mb-3">
@@ -529,6 +582,81 @@ function SubmitProperty() {
                                 </div>
 
                             </div>
+=======
+                            <div className="card-body">
+  <div className="row g-3">
+
+    <div className="col-md-4">
+      <label className="form-label">PG Type</label>
+      <select
+        name="pgType"
+        className="form-select"
+        value={formData.pgType}
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        <option value="Boys">Boys PG</option>
+        <option value="Girls">Girls PG</option>
+      </select>
+    </div>
+
+    <div className="col-md-4">
+      <label className="form-label">Room Type</label>
+      <select
+        name="roomType"
+        className="form-select"
+        value={formData.roomType}
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        <option value="Single">Single</option>
+        <option value="Double">Double</option>
+        <option value="Triple">Triple</option>
+      </select>
+    </div>
+
+    {formData.roomType === "Single" && (
+      <div className="col-md-4">
+        <label className="form-label">Single Price</label>
+        <input
+          type="number"
+          name="singlePrice"
+          className="form-control"
+          value={formData.singlePrice}
+          onChange={handleChange}
+        />
+      </div>
+    )}
+
+    {formData.roomType === "Double" && (
+      <div className="col-md-4">
+        <label className="form-label">Double Price</label>
+        <input
+          type="number"
+          name="doublePrice"
+          className="form-control"
+          value={formData.doublePrice}
+          onChange={handleChange}
+        />
+      </div>
+    )}
+
+    {formData.roomType === "Triple" && (
+      <div className="col-md-4">
+        <label className="form-label">Triple Price</label>
+        <input
+          type="number"
+          name="triplePrice"
+          className="form-control"
+          value={formData.triplePrice}
+          onChange={handleChange}
+        />
+      </div>
+    )}
+
+  </div>
+</div>
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                         </div>
                     )}
 
@@ -573,12 +701,20 @@ function SubmitProperty() {
 
                         <div className="card-body">
 
+<<<<<<< HEAD
                             <div {...getRootProps()}
                                 className="border rounded p-5 text-center bg-light"
                                 style={{ cursor: "pointer" }}>
                                 <input {...getInputProps()} />
                                 <p>Drag & Drop Images or Click to Upload</p>
                             </div>
+=======
+                            <div {...getRootProps()} className="dropzone-box text-center">
+  <input {...getInputProps()} />
+  <h6 className="mb-1">Drag & Drop Images</h6>
+  <small className="text-muted">or click to browse</small>
+</div>
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
                             <div className="row mt-3">
 
@@ -620,7 +756,11 @@ function SubmitProperty() {
                                     <div className="col-md-2 col-4 mb-3" key={"new" + index}>
                                         <img
                                             src={URL.createObjectURL(file)}
+<<<<<<< HEAD
                                             className="img-fluid rounded"
+=======
+                                           className="img-fluid rounded preview-img"
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                                             alt=""
                                         />
                                         <button
@@ -667,6 +807,61 @@ function SubmitProperty() {
                         </div>
                     </div>
 
+<<<<<<< HEAD
+=======
+                    {/* ================= VIDEO UPLOAD ================= */}
+                    <div className="card shadow-sm mb-4">
+                        <div className="card-header bg-light">
+                            <h5>Property Video</h5>
+                        </div>
+
+                        <div className="card-body">
+
+                            <input
+                                type="file"
+                                accept="video/*"
+                                className="form-control"
+                                onChange={handleVideoChange}
+                            />
+
+                            {/* EXISTING VIDEO */}
+                            {videoUrl && !video && (
+                                <div className="mt-3">
+                                    <video width="100%" height="300" controls>
+                                        <source src={`http://localhost:5000/uploads/${videoUrl}`} />
+                                    </video>
+
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-sm mt-2"
+                                        onClick={() => setVideoUrl(null)}
+                                    >
+                                        Remove Video
+                                    </button>
+                                </div>
+                            )}
+
+                            {/* NEW VIDEO */}
+                            {video && (
+                                <div className="mt-3">
+                                    <video width="100%" height="300" controls>
+                                        <source src={URL.createObjectURL(video)} />
+                                    </video>
+
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-sm mt-2"
+                                        onClick={() => setVideo(null)}
+                                    >
+                                        Remove Video
+                                    </button>
+                                </div>
+                            )}
+
+                        </div>
+                    </div>
+
+>>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                     {/* ================= SUBMIT BUTTON ================= */}
                     <button
                         className="btn btn-primary w-100 py-3"

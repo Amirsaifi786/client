@@ -1,0 +1,65 @@
+.form-section {
+  border-radius: 12px;
+  overflow: hidden;
+  border: none;
+}
+
+.form-section .card-header {
+  background: #f8f9fa;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.form-section .card-body {
+  padding: 25px;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+  height: 65px;
+  border-radius: 8px;
+}
+
+.dropzone-box {
+  border: 2px dashed #dcdcdc;
+  border-radius: 10px;
+  padding: 50px;
+  background: #fafafa;
+  transition: 0.2s;
+}
+
+.dropzone-box:hover {
+  border-color: #0d6efd;
+  background: #f3f7ff;
+}
+
+.feature-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.feature-box:hover {
+  background: #f8f9fa;
+}
+
+.preview-img {
+  height: 110px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+}
