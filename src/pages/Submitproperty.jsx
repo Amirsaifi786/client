@@ -6,10 +6,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useDropzone } from "react-dropzone";
 import { useParams } from "react-router-dom";
-<<<<<<< HEAD
-=======
 import "./SubmitProperty.css";
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 function SubmitProperty() {
     const { id } = useParams();
     const propertyId = id;
@@ -18,11 +15,8 @@ function SubmitProperty() {
     const isEditMode = !!propertyId;
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-<<<<<<< HEAD
-=======
     const [video, setVideo] = useState(null);
     const [videoUrl, setVideoUrl] = useState(null);
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     const [user, setUser] = useState(null);
     const [existingImages, setExistingImages] = useState([]);
     useEffect(() => {
@@ -76,10 +70,7 @@ function SubmitProperty() {
                     ? JSON.parse(data.images)
                     : data.images || []
             );
-<<<<<<< HEAD
-=======
             setVideoUrl(data.video || null);
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
         } catch (err) {
             console.error(err);
@@ -126,8 +117,6 @@ function SubmitProperty() {
     //         [e.target.name]: e.target.value
     //     });
     // };
-<<<<<<< HEAD
-=======
 
     const handleVideoChange = (e) => {
         const file = e.target.files[0];
@@ -135,7 +124,6 @@ function SubmitProperty() {
             setVideo(file);
         }
     };
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -185,80 +173,6 @@ function SubmitProperty() {
         setImages(images.filter((_, i) => i !== index));
     };
 
-<<<<<<< HEAD
-    // ================= SUBMIT =================
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     const data = new FormData();
-
-    //     Object.keys(formData).forEach(key => {
-    //         data.append(key, formData[key]);
-    //     });
-
-    //     data.append("description", description);
-    //     data.append("features", JSON.stringify(selectedFeatures));
-    //     data.append("user_id", user?.id || "");
-    //     images.forEach(img => {
-    //         data.append("images", img);
-    //     });
-
-    //     try {
-    //         setLoading(false);
-
-    //         if (isEditMode) {
-    //             await API.put(`/property/${propertyId}`, data, {
-    //                 headers: { "Content-Type": "multipart/form-data" }
-    //             });
-    //         } else {
-    //             await API.post("/property", data, {
-    //                 headers: { "Content-Type": "multipart/form-data" }
-    //             });
-    //         }
-
-    //         setSuccessMessage("✅ Property submitted successfully!");
-    //         setErrorMessage("");
-
-    //         setLoading(false);
-
-    //         // ✅ REDIRECT
-    //         setTimeout(() => {
-    //             navigate("/my-properties");
-    //         }, 1000);
-
-    //         // ✅ RESET ALL STATES
-    //         setFormData({
-    //             offerType: "",
-    //             propertyType: "",
-    //             price: "",
-    //             rooms: "",
-    //             bathrooms: "",
-    //             parking: "",
-    //             address: "",
-    //             locality: "",
-    //             title: "",
-    //             singlePrice: "",
-    //             doublePrice: "",
-    //             triplePrice: "",
-    //             meals: ""
-    //         });
-
-    //         setDescription("");
-    //         if (!isEditMode) {
-    //             setImages([]);
-    //         }
-    //         setSelectedFeatures([]);
-
-    //         setLoading(false);
-
-    //     } catch (err) {
-    //         setErrorMessage("❌ Something went wrong!");
-    //         setSuccessMessage("");
-    //         setLoading(false);
-    //     }
-    // };
-=======
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -268,15 +182,12 @@ function SubmitProperty() {
             data.append(key, formData[key]);
         });
 
-<<<<<<< HEAD
-=======
         if (video) {
             data.append("video", video);
         }
         // EXISTING VIDEO
         data.append("existingVideo", videoUrl || "");
 
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
         data.append("description", description);
         data.append("features", JSON.stringify(selectedFeatures));
         data.append("user_id", user?.id || "");
@@ -347,21 +258,6 @@ function SubmitProperty() {
     return (
         <>
             {/* ===== HEADER ===== */}
-<<<<<<< HEAD
-            <div
-                style={{
-                    background: "#7d746d",
-                    padding: "60px 0",
-                    color: "white",
-                    textAlign: "center"
-                }}
-            >
-                <h2 className="fw-bold">🏠 Submit Your Property</h2>
-                <p>List your property and find tenants faster</p>
-            </div>
-
-            <div className="container mt-5">
-=======
             <div className="bg-dark text-white text-center py-5 mb-4">
                 <h2 className="fw-bold mb-2">
                     {isEditMode ? "Update Property" : "Submit Your Property"}
@@ -372,18 +268,13 @@ function SubmitProperty() {
                 </div>
 
             <div className="container" style={{ maxWidth: "1100px" }}>
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
                 {successMessage && <div className="alert alert-success">{successMessage}</div>}
                 {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
                 <form onSubmit={handleSubmit}>
                     {/* ================= BASIC INFO ================= */}
-<<<<<<< HEAD
-                    <div className="card shadow-sm mb-4">
-=======
                    <div className="card shadow-sm mb-4 form-section">
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                         <div className="card-header bg-light">
                             <h5>Basic Information</h5>
                         </div>
@@ -511,78 +402,6 @@ function SubmitProperty() {
                                 <h5>PG / Hostel Details</h5>
                             </div>
 
-<<<<<<< HEAD
-                            <div className="card-body row">
-                                {/* PG TYPE */}
-                                <div className="col-md-4 mb-3">
-                                    <label>PG Type</label>
-                                    <select
-                                        name="pgType"
-                                        className="form-select"
-                                        value={formData.pgType}
-                                        onChange={handleChange}
-                                    >
-                                        <option value="">Select</option>
-                                        <option value="Boys">Boys PG</option>
-                                        <option value="Girls">Girls PG</option>
-                                    </select>
-                                </div>
-                                {/* ROOM TYPE */}
-                                <div className="col-md-4 mb-3">
-                                    <label>Room Type</label>
-                                    <select
-                                        name="roomType"
-                                        className="form-select"
-                                        value={formData.roomType}
-                                        onChange={handleChange}
-                                    >
-                                        <option value="">Select</option>
-                                        <option value="Single">Single Seater</option>
-                                        <option value="Double">Double Seater</option>
-                                        <option value="Triple">Triple Seater</option>
-                                    </select>
-                                    {formData.roomType === "Single" && (
-                                        <div className="col-md-4 mb-3">
-                                            <label>Single Seater Price</label>
-                                            <input
-                                                type="number"
-                                                name="singlePrice"
-                                                className="form-control"
-                                                value={formData.singlePrice}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {formData.roomType === "Double" && (
-                                        <div className="col-md-4 mb-3">
-                                            <label>Double Seater Price</label>
-                                            <input
-                                                type="number"
-                                                name="doublePrice"
-                                                className="form-control"
-                                                value={formData.doublePrice}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {formData.roomType === "Triple" && (
-                                        <div className="col-md-4 mb-3">
-                                            <label>Triple Seater Price</label>
-                                            <input
-                                                type="number"
-                                                name="triplePrice"
-                                                className="form-control"
-                                                value={formData.triplePrice}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                    )}
-                                </div>
-
-                            </div>
-=======
                             <div className="card-body">
   <div className="row g-3">
 
@@ -656,7 +475,6 @@ function SubmitProperty() {
 
   </div>
 </div>
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                         </div>
                     )}
 
@@ -701,20 +519,11 @@ function SubmitProperty() {
 
                         <div className="card-body">
 
-<<<<<<< HEAD
-                            <div {...getRootProps()}
-                                className="border rounded p-5 text-center bg-light"
-                                style={{ cursor: "pointer" }}>
-                                <input {...getInputProps()} />
-                                <p>Drag & Drop Images or Click to Upload</p>
-                            </div>
-=======
                             <div {...getRootProps()} className="dropzone-box text-center">
   <input {...getInputProps()} />
   <h6 className="mb-1">Drag & Drop Images</h6>
   <small className="text-muted">or click to browse</small>
 </div>
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
 
                             <div className="row mt-3">
 
@@ -756,11 +565,7 @@ function SubmitProperty() {
                                     <div className="col-md-2 col-4 mb-3" key={"new" + index}>
                                         <img
                                             src={URL.createObjectURL(file)}
-<<<<<<< HEAD
-                                            className="img-fluid rounded"
-=======
                                            className="img-fluid rounded preview-img"
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                                             alt=""
                                         />
                                         <button
@@ -807,8 +612,6 @@ function SubmitProperty() {
                         </div>
                     </div>
 
-<<<<<<< HEAD
-=======
                     {/* ================= VIDEO UPLOAD ================= */}
                     <div className="card shadow-sm mb-4">
                         <div className="card-header bg-light">
@@ -861,7 +664,6 @@ function SubmitProperty() {
                         </div>
                     </div>
 
->>>>>>> 84e0757772f2ad2aabec241df40c42d16a76e513
                     {/* ================= SUBMIT BUTTON ================= */}
                     <button
                         className="btn btn-primary w-100 py-3"
