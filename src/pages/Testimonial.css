@@ -1,0 +1,109 @@
+.testimonial-section{
+
+background:#f4f4f4;
+padding:80px 0;
+text-align:center;
+
+}
+
+/* heading */
+
+.testimonial-heading h2{
+
+font-weight:700;
+color:#015cb5;
+margin-bottom:60px;
+position:relative;
+
+}
+
+/* card */
+
+.testimonial-card{
+
+background:#015cb5;
+
+color:white;
+
+padding:60px 30px 30px;
+
+border-radius:30px;
+
+position:relative;
+
+min-height:280px;
+
+}
+
+/* avatar */
+
+.testimonial-avatar{
+
+position:absolute;
+
+top:-35px;
+left:50%;
+
+transform:translateX(-50%);
+
+}
+
+.testimonial-avatar img{
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+border:4px solid white;
+
+object-fit:cover;
+
+}
+
+/* review text */
+
+.testimonial-review{
+
+font-size:14px;
+
+line-height:1.6;
+
+margin-bottom:20px;
+
+}
+
+/* name */
+
+.testimonial-name{
+
+font-weight:600;
+
+margin-bottom:15px;
+
+}
+
+/* stars */
+
+.testimonial-stars{
+
+color:#f7c948;
+
+font-size:20px;
+
+}
+
+/* swiper pagination */
+
+.swiper-pagination-bullet{
+
+background:#ccc;
+opacity:1;
+
+}
+
+.swiper-pagination-bullet-active{
+
+background:#015cb5;
+
+}

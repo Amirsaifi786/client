@@ -1,0 +1,94 @@
+/* FORM CARD */
+
+.profile-card{
+background:#fff;
+border-radius:16px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* TABS */
+
+.tab-btn{
+flex:1;
+background:none;
+border:none;
+padding:12px;
+font-weight:600;
+font-size:15px;
+color:#6c757d;
+border-bottom:2px solid transparent;
+transition:0.3s;
+}
+
+.tab-btn:hover{
+color:#ff6b00;
+}
+
+.active-tab{
+color:#ff6b00;
+border-bottom:2px solid #ff6b00;
+}
+
+/* INPUTS */
+
+.form-control,
+.form-select{
+border-radius:8px;
+padding:10px 12px;
+font-size:14px;
+border:1px solid #ddd;
+transition:0.3s;
+}
+
+.form-control:focus,
+.form-select:focus{
+border-color:#ff6b00;
+box-shadow:0 0 0 0.15rem rgba(255,107,0,0.25);
+}
+
+/* BUTTON */
+
+.btn-orange{
+background:#ff6b00;
+color:white;
+padding:12px;
+border:none;
+border-radius:8px;
+font-weight:600;
+transition:0.3s;
+}
+
+.btn-orange:hover{
+background:#e55d00;
+}
+
+/* LINK */
+
+.link-orange{
+color:#ff6b00;
+cursor:pointer;
+font-weight:600;
+}
+
+.link-orange:hover{
+text-decoration:underline;
+}
+
+/* MOBILE */
+
+@media(max-width:576px){
+
+section{
+padding:20px;
+}
+
+.bg-white{
+padding:20px !important;
+}
+
+h4{
+font-size:20px;
+}
+
+}

@@ -1,0 +1,355 @@
+/* HEADER */
+.contactmanu{
+border:none;
+background:#f1592a;
+}
+
+.contact-link{
+text-decoration:none;
+color:black;
+}
+
+.contactmanu:hover .contact-link{
+color:white;
+}
+header{
+position:sticky;
+top:0;
+z-index:999;
+background:white;
+}
+
+.logo-img{
+height:50px;
+transition:all .3s ease;
+}
+
+/* MENU */
+
+.main-menu li{
+margin:0 8px;
+position:relative;
+}
+
+.main-menu li button{
+border:none;
+background:none;
+padding:8px 12px;
+font-weight:600;
+}
+
+.main-menu li button:hover{
+background:#ff6b00;
+color:white;
+border-radius:5px;
+}
+.main-menu li button:hover i {
+  color: white;
+}
+
+/* DROPDOWN */
+
+.dropdown-menu-custom a{
+min-width:220px;
+z-index:9999;
+text-decoration: none;
+}
+
+/* BUTTONS */
+
+.header-btn{
+background:#fe811a;
+color:white;
+padding:6px 14px;
+border-radius:30px;
+font-size:14px;
+font-weight:600;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:6px;
+transition:.3s;
+}
+.dropdown-menu-custom a:hover {
+  background-color: #f1592a !important;
+  color: #fff !important;
+}
+
+.header-btn:hover{
+background:#e55d00;
+color:white;
+}
+
+/* MOBILE SIDEBAR */
+
+.mobile-sidebar{
+width:280px;
+}
+
+/* OVERLAY */
+
+.z-9999{
+z-index:9999;
+}
+
+.inset-0{
+top:0;
+left:0;
+right:0;
+bottom:0;
+}
+
+/* ANIMATION */
+
+.animate-fade-in{
+animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+
+/* HAMBURGER */
+
+.hamburger-btn{
+border:none;
+background:none;
+font-size:26px;
+color:#333;
+cursor:pointer;
+}
+
+.hamburger-btn:hover{
+color:#ff6b00;
+}
+
+/* MOBILE RESPONSIVE */
+.mobile-sidebar{
+width:280px;
+max-width:80%;
+animation:slideMenu .3s ease;
+}
+
+@keyframes slideMenu{
+from{
+transform:translateX(-100%);
+}
+to{
+transform:translateX(0);
+}
+}
+
+/* ACCOUNT MENU */
+
+.account-menu{
+position:relative;
+cursor:pointer;
+}
+
+.account-name{
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:600;
+}
+
+.account-name img{
+width:32px;
+height:32px;
+border-radius:50%;
+}
+
+/* DROPDOWN */
+
+.account-dropdown{
+position:absolute;
+top:40px;
+right:0;
+background:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+border-radius:8px;
+list-style:none;
+padding:8px 0;
+min-width:200px;
+}
+
+.account-dropdown li{
+padding:10px 15px;
+}
+
+.account-dropdown li a{
+text-decoration:none;
+color:#333;
+display:block;
+}
+
+.account-dropdown li:hover{
+background:#f5f5f5;
+}
+
+@media(max-width:991px){
+
+.logo-img{
+height:40px;
+}
+
+.mobile-sidebar{
+width:75%;
+}
+
+.header-btn{
+font-size:12px;
+padding:6px 10px;
+}
+
+}
+.header-main{
+background:#fff;
+padding:14px 0;
+transition:0.3s;
+}
+
+.header-scroll{
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
+}
+
+.logo-img{
+height:45px;
+}
+
+.main-menu{
+display:flex;
+gap:30px;
+align-items:center;
+list-style:none;
+margin:0;
+}
+
+.menu-item{
+position:relative;
+}
+
+.menu-link{
+background:none;
+border:none;
+font-weight:600;
+color:#333;
+display:flex;
+align-items:center;
+gap:6px;
+text-transform:uppercase;
+font-size:14px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.menu-link:hover{
+color:#ff6b00;
+}
+
+.dropdown-box{
+position:absolute;
+top:100%;
+left:0;
+background:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+border-radius:8px;
+padding:10px 0;
+min-width:200px;
+animation:dropdown 0.25s ease;
+}
+
+.dropdown-link{
+display:block;
+padding:10px 18px;
+font-size:14px;
+color:#555;
+text-decoration:none;
+transition:0.2s;
+}
+
+.dropdown-link:hover{
+background:#fff3eb;
+color:#ff6b00;
+}
+
+.post-btn{
+background:#ff6b00;
+color:white;
+padding:10px 18px;
+border-radius:6px;
+font-weight:600;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.post-btn:hover{
+background:#e85f00;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.account-box{
+display:flex;
+align-items:center;
+gap:8px;
+cursor:pointer;
+position:relative;
+}
+
+.account-img{
+width:30px;
+height:30px;
+border-radius:50%;
+}
+
+.account-dropdown{
+position:absolute;
+top:40px;
+right:0;
+background:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+border-radius:8px;
+width:200px;
+overflow:hidden;
+}
+
+.account-dropdown a,
+.logout-btn{
+display:block;
+padding:12px 16px;
+text-decoration:none;
+color:#333;
+font-size:14px;
+}
+
+.account-dropdown a:hover,
+.logout-btn:hover{
+background:#fff3eb;
+color:#ff6b00;
+}
+
+@keyframes dropdown{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}

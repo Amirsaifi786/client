@@ -1,0 +1,45 @@
+.footer-link {
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #fe8628 !important;
+    padding-left: 5px; /* Slight slide effect */
+}
+
+.footer-main{
+background: linear-gradient(165deg, #005bb6 10%, #005bb6 10%, #ffffff 5%, #ffffff 20%, #005bb6 50%, #6e8092 75%, #0b5fb2 5%, #ffffff 100%);
+position:relative;
+overflow:hidden;
+}
+
+/* light pattern effect */
+.footer-main::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+background-size: 20px 20px;
+pointer-events:none;
+}
+
+.hover-orange:hover {
+    color: #fe8628 !important;
+}
+
+/* Social Icons */
+.social-icon-circle{
+transition:all 0.3s ease;
+background:white;
+border-radius:50%;
+}
+
+.social-icon-circle:hover{
+background:#fe8628;
+color:white !important;
+border-color:#fe8628 !important;
+transform:translateY(-4px);
+}

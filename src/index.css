@@ -1,0 +1,213 @@
+/* ----- CORE ----- */
+.home-wrapper {
+    font-family: 'Varela Round', sans-serif;
+    color: #707070;
+    overflow-x: hidden;
+}
+.bg-orange:hover {background-color: #ffffff ; color :  black !important ; border: 2px solid #fe8628; }
+.bg-orange { background-color: #fe8628; }
+.hover-bg-orange:hover { background-color: #ffffff !important; }
+.hover-text-orange:hover { color: #f1592a !important; }
+.hover-text-white:hover { color: #ffffff !important; }
+.text-orange { color: #f1592a; }
+.btn-outline-orange { border-color: #f1592a; color: #f1592a; }
+.btn-outline-orange:hover { background-color: #f1592a; color: white; }
+.bg-gradient { background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); }
+
+/* ----- BANNER & SEARCH ----- */
+.parallax {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #36383e;
+    opacity: 0.5;
+}
+
+.search-container {
+    position: relative;
+    z-index: 10;
+    color: white;
+}
+
+.with-forms {
+    backdrop-filter: blur(5px);
+    border: 3px solid #fe8628;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.custom-input {
+    height: 52px;
+    border-radius: 5px !important;
+    border: none;
+}
+
+.btn-search {
+    background: #f1592a;
+    color: white;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.btn-search:hover {
+    background: #d43c0f;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* ----- ICON BOXES ----- */
+.icon-container {
+    width: 160px;
+    height: 160px;
+    background: #fe8628;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+    font-size: 32px;
+}
+
+.icon-links {
+    position: absolute;
+    bottom: -15px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.icon-links a {
+    background: #333;
+    color: white;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+/* ----- REGION SECTION ----- */
+.region-section {
+    background: #000000 url("https://roomrentjaipur.com/wp-content/uploads/2017/12/findeo_bg.png") center/cover;
+}
+
+.img-box {
+    height: 250px;
+    background-color: #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: 0.3s;
+}
+/* Default state (semi-transparent dark) */
+.img-box-overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+}
+
+/* Hover state (Changes to your orange color #f1592a) */
+.img-box:hover .img-box-overlay {
+    background-color: rgba(241, 89, 42, 0.7); /* 0.7 opacity makes it look rich but keeps the image visible */
+}
+
+/* Optional: Zoom effect on the image when hovering */
+.img-box {
+    transition: transform 0.3s ease;
+}
+
+.img-box:hover {
+    transform: scale(1.02);
+}
+.img-box:hover { transform: translateY(-5px); }
+
+.img-box-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+}
+
+/* ----- LISTINGS ----- */
+.listing-item {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.listing-img-container {
+    position: relative;
+    height: 350px;
+}
+
+.listing-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listing-badges {
+    position: absolute;
+    top: 15px; left: 15px;
+}
+
+.listing-compact-title {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-weight: bold;
+}
+
+/* ----- TESTIMONIALS ----- */
+.testimonial-box {
+    border-left: 4px solid #f1592a;
+}
+.property-box{
+background:#fff;
+border-radius:10px;
+padding:35px 20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+transition:0.3s;
+height:100%;
+}
+
+.property-box:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+.icon{
+font-size:40px;
+color:#fe8628;
+margin-bottom:15px;
+}
+
+.links a{
+display:inline-block;
+margin:5px;
+padding:5px 12px;
+background:#f8f8f8;
+border-radius:20px;
+font-size:14px;
+text-decoration:none;
+color:#555;
+}
+
+.links a:hover{
+background:#f1592a;
+color:white;
+}

@@ -1,0 +1,11 @@
+.search-btn{
+background:#f1592a;
+color:white;
+border:none;
+}
+
+.search-btn:hover{
+background:white;
+color:black;
+border:2px solid #f1592a;
+}

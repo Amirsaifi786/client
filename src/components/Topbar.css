@@ -1,0 +1,79 @@
+/* TOPBAR */
+
+.topbar{
+background:#0d61b6;
+color:white;
+font-size:14px;
+padding:8px 0;
+}
+
+.topbar-left{
+display:flex;
+gap:25px;
+align-items:center;
+}
+
+.topbar-left span{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.topbar-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.top-login{
+color:white;
+text-decoration:none;
+font-weight:500;
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.top-login:hover{
+opacity:0.8;
+}
+
+/* SOCIAL */
+
+.top-social{
+display:flex;
+gap:10px;
+}
+
+.top-social a{
+width:30px;
+height:30px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(255,255,255,0.2);
+color:white;
+transition:.3s;
+text-decoration:none;
+}
+
+.top-social a:hover{
+background:white;
+color:#ff6b00;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.topbar-left{
+gap:10px;
+font-size:12px;
+}
+
+.topbar-right{
+gap:10px;
+}
+
+}
