@@ -90,8 +90,10 @@ function MyBookmark() {
                             </small>
 
                             <span className="badge bg-success mt-2">
-                              Rs.{item.price}
+                              Rs.{item.price || item.singlePrice || item.doublePrice || item.triplePrice}
                             </span>
+                            
+
                           </td>
 
                           <td>

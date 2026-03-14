@@ -217,23 +217,23 @@ const PropertyDetail = () => {
                                 <h4 className="mb-3">Pricing for PG</h4>
                                 <ul className="list-group">
                                     {/* Hum check kar rahe hain ki price exist kare aur 0 na ho */}
-{property.singlePrice > 0 && (
-  <li className="list-group-item">
-    Single Sharing : ₹{property.singlePrice}
-  </li>
-)}
+                                    {property.singlePrice > 0 && (
+                                        <li className="list-group-item">
+                                            Single Sharing : ₹{property.singlePrice}
+                                        </li>
+                                    )}
 
-{property.doublePrice > 0 && (
-  <li className="list-group-item">
-    Double Sharing : ₹{property.doublePrice}
-  </li>
-)}
+                                    {property.doublePrice > 0 && (
+                                        <li className="list-group-item">
+                                            Double Sharing : ₹{property.doublePrice}
+                                        </li>
+                                    )}
 
-{property.triplePrice > 0 && (
-  <li className="list-group-item">
-    Triple Sharing : ₹{property.triplePrice}
-  </li>
-)}
+                                    {property.triplePrice > 0 && (
+                                        <li className="list-group-item">
+                                            Triple Sharing : ₹{property.triplePrice}
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
                         </div>

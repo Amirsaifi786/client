@@ -8,35 +8,35 @@ const Roomlist = () => {
 
   const { slug, locationSlug } = useParams();
   const parseSlug = (slug) => {
-  if (!slug) return {};
+    if (!slug) return {};
 
-  // ALL TYPES
-  if (slug === "all-houses") return { type: "house" };
-  if (slug === "all-flats") return { type: "flat" };
-  if (slug === "all-pg") return { type: "pg" };
+    // ALL TYPES
+    if (slug === "all-houses") return { type: "house" };
+    if (slug === "all-flats") return { type: "flat" };
+    if (slug === "all-pg") return { type: "pg" };
 
-  // HOUSE ROOMS
-  if (slug.includes("room")) {
+    // HOUSE ROOMS
+    if (slug.includes("room")) {
+      return {
+        type: "house",
+        rooms: slug.split("-")[0]
+      };
+    }
+
+    // FLAT BHK
+    if (slug.includes("bhk")) {
+      return {
+        type: "flat",
+        rooms: slug.split("-")[0]
+      };
+    }
+
+    // PG TYPES
     return {
-      type: "house",
-      rooms: slug.split("-")[0]
+      type: "pg",
+      pgType: slug.replace(/-/g, " ")
     };
-  }
-
-  // FLAT BHK
-  if (slug.includes("bhk")) {
-    return {
-      type: "flat",
-      rooms: slug.split("-")[0]
-    };
-  }
-
-  // PG TYPES
-  return {
-    type: "pg",
-    pgType: slug.replace(/-/g, " ")
   };
-};
   /* ================= STATES ================= */
 
   const [properties, setProperties] = useState([]);
@@ -67,22 +67,22 @@ const Roomlist = () => {
         }
 
         const slugFilters = slug ? parseSlug(slug) : {};
-       if (slugFilters.type)
-        params.append("type", slugFilters.type);
+        if (slugFilters.type)
+          params.append("type", slugFilters.type);
 
-      if (slugFilters.rooms)
-        params.append("rooms", Number(slugFilters.rooms));
+        if (slugFilters.rooms)
+          params.append("rooms", Number(slugFilters.rooms));
 
-      if (slugFilters.pgType)
-        params.append("pgType", slugFilters.pgType);
+        if (slugFilters.pgType)
+          params.append("pgType", slugFilters.pgType);
 
         if (filters.location) params.append("location", filters.location);
 
-if (filters.type) params.append("type", filters.type);
+        if (filters.type) params.append("type", filters.type);
 
-if (filters.rooms) params.append("rooms", Number(filters.rooms));
+        if (filters.rooms) params.append("rooms", Number(filters.rooms));
 
-if (filters.baths) params.append("baths", Number(filters.baths));
+        if (filters.baths) params.append("baths", Number(filters.baths));
 
         params.append("page", page);
         params.append("limit", 6);
@@ -142,7 +142,7 @@ if (filters.baths) params.append("baths", Number(filters.baths));
 
             <div className="text-center py-5">
               <h4 className="fw-semibold text-muted">
-                No Properties Found 
+                No Properties Found
               </h4>
 
               <p className="text-muted">
@@ -284,8 +284,8 @@ if (filters.baths) params.append("baths", Number(filters.baths));
                       key={i}
                       onClick={() => setPage(i + 1)}
                       className={`btn ${page === i + 1
-                          ? "bg-orange text-white"
-                          : "btn-outline-secondary"
+                        ? "bg-orange text-white"
+                        : "btn-outline-secondary"
                         }`}
                     >
                       {i + 1}

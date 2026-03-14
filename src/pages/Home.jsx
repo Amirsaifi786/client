@@ -78,8 +78,8 @@ function Home() {
               <i className="fa-solid fa-hotel icon"></i>
               <h5>PG / Hostel</h5>
               <div className="links">
-                <Link to="/property/boys-pg">Boys</Link>
-                <Link to="/property/girls-pg">Girls</Link>
+                <Link to="/property/boys">Boys</Link>
+                <Link to="/property/girls">Girls</Link>
               </div>
             </div>
           </div>

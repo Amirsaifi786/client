@@ -61,7 +61,7 @@ const testimonials = [
 
         {/* Heading */}
         <div className="testimonial-heading text-center">
-          <h2>Testimonials</h2>
+          <h2>Hear From Our Happy Customers</h2>
         </div>
 
         <Swiper
