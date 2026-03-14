@@ -185,16 +185,12 @@ const parseJSON = (data, fallback = []) => {
   return fallback;
 };
 
-<<<<<<< HEAD
-const upload = multer({ storage: storage });
-=======
 const upload = multer({ storage });
 
 const propertyUpload = upload.fields([
   { name: "images", maxCount: 10 },
   { name: "video", maxCount: 1 }
 ]);
->>>>>>> cb05121 (work)
 
 router.get("/all-properties", (req, res) => {
 
@@ -309,11 +305,7 @@ if (pgType) {
   });
 });
 
-<<<<<<< HEAD
-router.post("/", upload.array("images"), (req, res) => {
-=======
 router.post("/", propertyUpload, (req, res) => {
->>>>>>> cb05121 (work)
 
   const {
     user_id,
@@ -336,9 +328,6 @@ router.post("/", propertyUpload, (req, res) => {
     meals,
   } = req.body;
 
-<<<<<<< HEAD
-  const images = req.files.map(file => file.filename);
-=======
   const images = req.files.images
   ? req.files.images.map(file => file.filename)
   : [];
@@ -346,7 +335,6 @@ router.post("/", propertyUpload, (req, res) => {
 const video = req.files.video
   ? req.files.video[0].filename
   : null;
->>>>>>> cb05121 (work)
 
   const slugify = (text) => {
     return text
@@ -379,16 +367,10 @@ const video = req.files.video
     slug,
     description,
     features,
-<<<<<<< HEAD
-    images
-  )
-  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-=======
     images,
     video
   )
   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
->>>>>>> cb05121 (work)
   `;
 
   db.query(sql, [
@@ -475,12 +457,6 @@ router.get("/property/:id", (req, res) => {
 });
 
 /* ===== UPDATE PROPERTY ===== */
-<<<<<<< HEAD
-router.put("/:id", upload.array("images"), (req, res) => {
-
-  const propertyId = req.params.id;
-
-=======
 router.put("/:id", propertyUpload, (req, res) => {
 
   const propertyId = req.params.id;
@@ -490,7 +466,6 @@ const newVideo =
     ? req.files.video[0].filename
     : req.body.existingVideo || null;
 
->>>>>>> cb05121 (work)
   const {
     offerType,
     propertyType,
@@ -558,12 +533,8 @@ const newVideo =
       slug=?,
       description=?,
       features=?,
-<<<<<<< HEAD
-      images=?
-=======
       images=?,
       video=?
->>>>>>> cb05121 (work)
     WHERE id=?
   `;
 
@@ -586,10 +557,7 @@ const newVideo =
     description,
     features,
     JSON.stringify(finalImages),
-<<<<<<< HEAD
-=======
     newVideo,
->>>>>>> cb05121 (work)
     propertyId
   ], (err) => {
 
