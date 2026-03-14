@@ -189,7 +189,7 @@ const upload = multer({ storage: storage });
 
 router.get("/all-properties", (req, res) => {
 
-  let { location, type, rooms, baths, page = 1, limit = 6 } = req.query;
+  let { location, type, rooms, baths, pgType, page = 1, limit = 6 } = req.query;
 
   page = Number(page);
   limit = Number(limit);
@@ -232,6 +232,11 @@ if (location) {
     sql += " AND properties.bathrooms=?";
     params.push(Number(baths));
   }
+  // pg type
+if (pgType) {
+  sql += " AND LOWER(properties.pgType) = LOWER(?)";
+  params.push(pgType);
+}
 
   /* ================= COUNT QUERY ================= */
 
