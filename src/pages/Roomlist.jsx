@@ -178,7 +178,7 @@ const Roomlist = () => {
 
                         <img
                           src={image}
-                          className="w-100 h-100"
+                          className="w-100 "
                           style={{ height: 230, objectFit: "cover" }}
                           alt={item.title}
                         />
