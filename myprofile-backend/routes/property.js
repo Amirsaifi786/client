@@ -393,8 +393,8 @@ const video = req.files.video
     slug,
     description,
     features,
+    JSON.stringify(images),
     video,
-    JSON.stringify(images)
   ], (err, result) => {
 
     if (err) {
@@ -499,8 +499,9 @@ const newVideo =
 
   // 👇 new uploaded images
   let newImages = [];
-  if (req.files && req.files.length > 0) {
-    newImages = req.files.map(file => file.filename);
+
+  if (req.files && req.files.images) {
+    newImages = req.files.images.map(file => file.filename);
   }
 
   // 👇 combine remaining old + new
