@@ -2,7 +2,20 @@ import React from 'react';
 import "./Footer.css";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 function Footer() {
+  const navigate = useNavigate();
+
+  const handleAccountClick = () => {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      navigate("/my-profile");     // logged in
+    } else {
+      navigate("/myprofile");   // login page
+    }
+  };
+
   return (
     <>
       <footer id="footer" className="footer-main text-white pt-5 pb-3 bg-light py-5 text-secondary">
@@ -16,7 +29,7 @@ function Footer() {
                 alt="Room Dekkho in  Jaipur"
                 className="logo-img h-12 w-20 mb-4"
               />
-              <p className="text-muted" style={{maxWidth: '30rem'}}>
+              <p className="text-muted" style={{ maxWidth: '30rem' }}>
                 roomdekho.com is the oldest real estate portal of Jaipur. Our
                 aim is to give home-seekers and home-owners a simple yet innovative
                 interface where both parties can contact each other free of cost.
@@ -41,13 +54,24 @@ function Footer() {
                   { name: "Privacy Policy", path: "/privacy-policy" }
                 ].map((link) => (
                   <li key={link.name} className="mb-2">
-                    <Link
-                      to={link.path}
-                      className="footer-link text-decoration-none text-white"
-                    >
-                      <i className="fa-solid fa-angle-right me-2 small" style={{ color: 'rgb(254, 134, 40)' }} />
-                      {link.name}
-                    </Link>
+                    {link.name === "My Account" ? (
+                      <span
+                        onClick={handleAccountClick}
+                        style={{ cursor: "pointer" }}
+                        className="footer-link text-decoration-none text-white"
+                      >
+                        <i className="fa-solid fa-angle-right me-2 small" style={{ color: 'rgb(254, 134, 40)' }} />
+                        {link.name}
+                      </span>
+                    ) : (
+                      <Link
+                        to={link.path}
+                        className="footer-link text-decoration-none text-white"
+                      >
+                        <i className="fa-solid fa-angle-right me-2 small" style={{ color: 'rgb(254, 134, 40)' }} />
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -72,23 +96,23 @@ function Footer() {
               </div>
 
               {/* Social Icons - Circle Style */}
-             <div className="d-flex gap-2 mt-4">
-              {[
-                { icon: 'fa-facebook-f' },
-                { icon: 'fa-twitter' },
-                { icon: 'fa-linkedin-in' },
-                { icon: 'fa-instagram' }
-              ].map((social, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="social-icon-circle d-flex align-items-center justify-content-center text-decoration-none"
-                  style={{ width: '50px', height: '50px', border: '1px solid #ddd', color: '#555' }}
-                >
-                  <i className={`fa-brands ${social.icon}`} />
-                </a>
-              ))}
-            </div>
+              <div className="d-flex gap-2 mt-4">
+                {[
+                  { icon: 'fa-facebook-f' },
+                  { icon: 'fa-twitter' },
+                  { icon: 'fa-linkedin-in' },
+                  { icon: 'fa-instagram' }
+                ].map((social, i) => (
+                  <a
+                    key={i}
+                    href="#"
+                    className="social-icon-circle d-flex align-items-center justify-content-center text-decoration-none"
+                    style={{ width: '50px', height: '50px', border: '1px solid #ddd', color: '#555' }}
+                  >
+                    <i className={`fa-brands ${social.icon}`} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -104,7 +128,7 @@ function Footer() {
         <a
           href="#"
           className="bg-orange text-white d-flex align-items-center justify-content-center rounded-circle shadow transition"
-          style={{width: '3rem', height: '3rem'}}
+          style={{ width: '3rem', height: '3rem' }}
         >
           <i className="fa-solid fa-arrow-up" />
         </a>

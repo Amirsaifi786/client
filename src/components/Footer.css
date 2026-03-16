@@ -6,6 +6,9 @@
     color: #fe8628 !important;
     padding-left: 5px; /* Slight slide effect */
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 
 .footer-main{
 background: linear-gradient(165deg, #005bb6 10%, #005bb6 10%, #ffffff 5%, #ffffff 20%, #005bb6 50%, #6e8092 75%, #0b5fb2 5%, #ffffff 100%);

@@ -393,6 +393,7 @@ const video = req.files.video
     slug,
     description,
     features,
+    video,
     JSON.stringify(images)
   ], (err, result) => {
 
