@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../api/axios";
+// import API from "../api/axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useDropzone } from "react-dropzone";
 import { useParams } from "react-router-dom";
 import "./SubmitProperty.css";
+import API, { IMAGE_URL } from "../api/axios";
+
 function SubmitProperty() {
     const { id } = useParams();
     const propertyId = id;
@@ -265,7 +267,7 @@ function SubmitProperty() {
                 <p className="mb-0 opacity-75">
                     Fill details to list your property faster
                 </p>
-                </div>
+            </div>
 
             <div className="container" style={{ maxWidth: "1100px" }}>
 
@@ -274,7 +276,7 @@ function SubmitProperty() {
 
                 <form onSubmit={handleSubmit}>
                     {/* ================= BASIC INFO ================= */}
-                   <div className="card shadow-sm mb-4 form-section">
+                    <div className="card shadow-sm mb-4 form-section">
                         <div className="card-header bg-light">
                             <h5>Basic Information</h5>
                         </div>
@@ -403,78 +405,78 @@ function SubmitProperty() {
                             </div>
 
                             <div className="card-body">
-  <div className="row g-3">
+                                <div className="row g-3">
 
-    <div className="col-md-4">
-      <label className="form-label">PG Type</label>
-      <select
-        name="pgType"
-        className="form-select"
-        value={formData.pgType}
-        onChange={handleChange}
-      >
-        <option value="">Select</option>
-        <option value="Boys">Boys PG</option>
-        <option value="Girls">Girls PG</option>
-      </select>
-    </div>
+                                    <div className="col-md-4">
+                                        <label className="form-label">PG Type</label>
+                                        <select
+                                            name="pgType"
+                                            className="form-select"
+                                            value={formData.pgType}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="">Select</option>
+                                            <option value="Boys">Boys PG</option>
+                                            <option value="Girls">Girls PG</option>
+                                        </select>
+                                    </div>
 
-    <div className="col-md-4">
-      <label className="form-label">Room Type</label>
-      <select
-        name="roomType"
-        className="form-select"
-        value={formData.roomType}
-        onChange={handleChange}
-      >
-        <option value="">Select</option>
-        <option value="Single">Single</option>
-        <option value="Double">Double</option>
-        <option value="Triple">Triple</option>
-      </select>
-    </div>
+                                    <div className="col-md-4">
+                                        <label className="form-label">Room Type</label>
+                                        <select
+                                            name="roomType"
+                                            className="form-select"
+                                            value={formData.roomType}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="">Select</option>
+                                            <option value="Single">Single</option>
+                                            <option value="Double">Double</option>
+                                            <option value="Triple">Triple</option>
+                                        </select>
+                                    </div>
 
-    {formData.roomType === "Single" && (
-      <div className="col-md-4">
-        <label className="form-label">Single Price</label>
-        <input
-          type="number"
-          name="singlePrice"
-          className="form-control"
-          value={formData.singlePrice}
-          onChange={handleChange}
-        />
-      </div>
-    )}
+                                    {formData.roomType === "Single" && (
+                                        <div className="col-md-4">
+                                            <label className="form-label">Single Price</label>
+                                            <input
+                                                type="number"
+                                                name="singlePrice"
+                                                className="form-control"
+                                                value={formData.singlePrice}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    )}
 
-    {formData.roomType === "Double" && (
-      <div className="col-md-4">
-        <label className="form-label">Double Price</label>
-        <input
-          type="number"
-          name="doublePrice"
-          className="form-control"
-          value={formData.doublePrice}
-          onChange={handleChange}
-        />
-      </div>
-    )}
+                                    {formData.roomType === "Double" && (
+                                        <div className="col-md-4">
+                                            <label className="form-label">Double Price</label>
+                                            <input
+                                                type="number"
+                                                name="doublePrice"
+                                                className="form-control"
+                                                value={formData.doublePrice}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    )}
 
-    {formData.roomType === "Triple" && (
-      <div className="col-md-4">
-        <label className="form-label">Triple Price</label>
-        <input
-          type="number"
-          name="triplePrice"
-          className="form-control"
-          value={formData.triplePrice}
-          onChange={handleChange}
-        />
-      </div>
-    )}
+                                    {formData.roomType === "Triple" && (
+                                        <div className="col-md-4">
+                                            <label className="form-label">Triple Price</label>
+                                            <input
+                                                type="number"
+                                                name="triplePrice"
+                                                className="form-control"
+                                                value={formData.triplePrice}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    )}
 
-  </div>
-</div>
+                                </div>
+                            </div>
                         </div>
                     )}
 
@@ -520,10 +522,10 @@ function SubmitProperty() {
                         <div className="card-body">
 
                             <div {...getRootProps()} className="dropzone-box text-center">
-  <input {...getInputProps()} />
-  <h6 className="mb-1">Drag & Drop Images</h6>
-  <small className="text-muted">or click to browse</small>
-</div>
+                                <input {...getInputProps()} />
+                                <h6 className="mb-1">Drag & Drop Images</h6>
+                                <small className="text-muted">or click to browse</small>
+                            </div>
 
                             <div className="row mt-3">
 
@@ -532,7 +534,7 @@ function SubmitProperty() {
                                     <div className="col-md-2 col-4 mb-3 position-relative" key={"old" + index}>
 
                                         <img
-                                            src={`http://localhost:5000/uploads/${img}`}
+                                            src={`${IMAGE_URL}/${img}`}
                                             className="img-fluid rounded"
                                             alt=""
                                         />
@@ -565,7 +567,7 @@ function SubmitProperty() {
                                     <div className="col-md-2 col-4 mb-3" key={"new" + index}>
                                         <img
                                             src={URL.createObjectURL(file)}
-                                           className="img-fluid rounded preview-img"
+                                            className="img-fluid rounded preview-img"
                                             alt=""
                                         />
                                         <button
@@ -631,7 +633,7 @@ function SubmitProperty() {
                             {videoUrl && !video && (
                                 <div className="mt-3">
                                     <video width="100%" height="300" controls>
-                                        <source src={`http://localhost:5000/uploads/${videoUrl}`} />
+                                        <source src={`${IMAGE_URL}/${videoUrl}`} />
                                     </video>
 
                                     <button
