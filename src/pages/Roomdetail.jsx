@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import API, { IMAGE_URL } from "../api/axios";
+import { toast } from "react-toastify";
 import "./Roomdetail.css";
 
 const PropertyDetail = () => {
@@ -60,21 +61,17 @@ const prevImage = ()=>{
 setActiveIndex((prev)=>prev===0?images.length-1:prev-1);
 };
 
-const sendMessage = async ()=>{
-
-try{
-
-await API.post("/message/send-message",{
-property_id:property.id,
-message
-});
-
-alert("Message sent");
-
-}catch(error){
-console.log(error);
-}
-
+const sendMessage = async () => {
+  try {
+    await API.post("/message/send-message", {
+      property_id: property.id,
+      message,
+    });
+    toast.success("Message sent successfully!");
+  } catch (error) {
+    console.log(error);
+    toast.error("Failed to send message.");
+  }
 };
 
 const toggleBookmark = async ()=>{

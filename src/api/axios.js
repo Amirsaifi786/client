@@ -12,6 +12,6 @@ export default API;
 // const API = axios.create({
 //   baseURL: "https://room-dekho-backend-5.onrender.com/api",
 // });
-// export const IMAGE_URL = "https://room-dekho-backend-5.onrender.com/uploads";
+// export const IMAGE_URL = "https://room-dekho-backend-5.onrender.com/uploads/";
 
 // export default API;  
