@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // import API from "../api/axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -216,7 +217,18 @@ function SubmitProperty() {
                 });
             }
 
-            setSuccessMessage("✅ Property submitted successfully!");
+            // ✅ Success message
+            if (isEditMode) {
+                toast.success("Property updated successfully!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+            } else {
+                toast.success("Property submitted successfully!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+            }
             setErrorMessage("");
 
             setLoading(false);
@@ -250,7 +262,11 @@ function SubmitProperty() {
 
         } catch (err) {
 
-            setErrorMessage("❌ Something went wrong!");
+            // ❌ Error message
+            toast.error("Something went wrong!", {
+            position: "top-right",
+            autoClose: 3000,
+            });
             setSuccessMessage("");
             setLoading(false);
 

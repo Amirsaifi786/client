@@ -16,11 +16,17 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import PropertyDetail from "./pages/Roomdetail";
 import LocationPage from "./pages/Location";
 import AutoPopup from "./components/AutoPopup";
+import ChangePassword from "./pages/ChangePassword";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
+    
     <BrowserRouter>
     {/* GLOBAL POPUP */}
       <AutoPopup />
+      {/* routes */}
+      <ToastContainer position="top-right" autoClose={3000} />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -38,6 +44,7 @@ function App() {
           <Route path="/my-properties" element={<MyProperties />} />
           <Route path="/my-bookmarks" element={<Bookmark />} />
           <Route path="/my-profile" element={<Myaccount />} />
+          <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/myprofile" element={<Myprofile />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
