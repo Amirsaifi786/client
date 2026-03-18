@@ -38,6 +38,7 @@ export default function MyAccountSidebar() {
         <ul className="list-unstyled">
 
           <li className="mb-2"><Link to="/my-profile">My Profile</Link></li>
+          <li className="mb-2"><Link to="/change-password">Change Password</Link></li>
 
           <li
             className="mb-2"
